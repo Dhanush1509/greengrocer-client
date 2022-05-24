@@ -8,7 +8,7 @@ const Search = (props) => {
     const submitHandler=(e) => {
         e.preventDefault()
             if (keyword.trim()) {
-                props.history.push(`${process.env.REACT_APP_URL}query/${keyword}`);
+                props.history.push(`/query/${keyword}`);
             } else {
               props.history.push("/");
             }
