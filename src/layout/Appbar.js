@@ -25,7 +25,7 @@ function Appbar() {
    useEffect(() => {
     getUser();
   //  eslint-disable-next-line
-   }, []);
+   }, [location]);
   const handleLogout = () => {
     logout();
   };

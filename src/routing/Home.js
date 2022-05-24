@@ -121,10 +121,10 @@ const Home = ({ history, match }) => {
     }
     //eslint-disable-next-line
   }, [error]);
-  useEffect(() => {
-    getUser();
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  //   //eslint-disable-next-line
+  // }, []);
 
   return (
     <>

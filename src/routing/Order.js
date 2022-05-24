@@ -8,7 +8,7 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import animationData1 from "../assets/reactLottie/paymentSuccessful.json";
 import animationData2 from "../assets/reactLottie/paymentFailed.json";
-import Loader from "../layout/Spinner"
+import Loader from "../layout/Spinner";
 import {
   Card,
   ListGroup,
@@ -41,29 +41,29 @@ const defaultOptions2 = {
   },
 };
 const Order = (props) => {
-  const {
-    getOrder,
-    order,
-    updateOrderToSuccess,
-    getOptions,
-    razorpayOptions,
-  } = useContext(OrderContext);
+  const { getOrder, order, updateOrderToSuccess, getOptions, razorpayOptions } =
+    useContext(OrderContext);
   const { userData } = useContext(authContext);
   const { emptyCart } = useContext(cartContext);
   useEffect(() => {
-    if(userData.length === 0){
-      props.history.push("/signin")
-    }
-    else if(!order){
-    getOrder(props.match.params.id);
+    if (userData.length === 0) {
+      props.history.push("/signin");
+    } else if (!order) {
+      getOrder(props.match.params.id);
     }
     //eslint-disable-next-line
-  },[order]);
+  }, [order]);
 
   const [razorpayLoading, setRazorpayLoading] = useState(false);
-  const handleTrack=()=>{
-props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}order/${order._id}/track`)
-  }
+  const handleTrack = () => {
+    props.history.push(
+      `${
+        process.env.NODE_ENV == "production"
+          ? process.env.REACT_APP_URL
+          : process.env.REACT_APP_DEV_URL
+      }order/${order._id}/track`
+    );
+  };
   function loadScript(src) {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -91,9 +91,16 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
     }
 
     setAuth(userData.token);
-    const result = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/razorpay/generateid`, {
-      amount: order.totalPrice,
-    });
+    const result = await axios.post(
+      `${
+        process.env.NODE_ENV == "production"
+          ? process.env.REACT_APP_URL
+          : process.env.REACT_APP_DEV_URL
+      }orders/razorpay/generateid`,
+      {
+        amount: order.totalPrice,
+      }
+    );
 
     if (!result) {
       alert("Server error. Are you online?");
@@ -120,13 +127,23 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
         };
         // console.log(data);
         setAuth(userData.token);
-        const result = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/payment/success`, data);
+        try {
+          const result = await axios.post(
+            `${
+              process.env.NODE_ENV == "production"
+                ? process.env.REACT_APP_URL
+                : process.env.REACT_APP_DEV_URL
+            }orders/payment/success`,
+            data
+          );
+        } catch (error) {
+          console.log(error);
+        }
         getOrder(props.match.params.id);
       },
       prefill: {
         name: userData.name,
         email: userData.email,
-    
       },
       theme: {
         color: "#56cc9d",
@@ -184,7 +201,6 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
                           {order.deliveryAddress.postalCode}
                         </p>
                         <p style={{ textAlign: "left" }}>
-                          
                           <span>Delivery Status:</span>
                           {order.isDelivered ? (
                             <Badge
@@ -211,7 +227,6 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
                           Payment Option: {order.paymentOption}
                         </p>
                         <p style={{ textAlign: "left" }}>
-                          
                           <span>Payment Status:</span>
                           {order.isPaid ? (
                             <Badge
@@ -236,16 +251,13 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    
                     <ListGroup.Item>
                       <h2>Order Items</h2>
                     </ListGroup.Item>
                     {order.orderedItemsData.map((item) => (
                       <ListGroup.Item key={item._id}>
-                        
                         <Row>
                           <Col md={1}>
-                            
                             <Image
                               src={item.id.image}
                               alt={item.id.name}
@@ -259,7 +271,6 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
                             </Link>
                           </Col>
                           <Col md={5} className="my-auto">
-                            
                             <h6>
                               {item.quantity} X ₹{item.id.price}/kg=₹
                               {Math.floor(item.id.price * item.quantity)}
@@ -284,28 +295,24 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      
                       <Col md={6}>Items Cost</Col>
                       <Col md={6}>₹{order.itemsPrice}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      
                       <Col md={6}>Delivery Charge</Col>
                       <Col md={6}>₹{order.deliveryPrice}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      
                       <Col md={6}>Tax Charge</Col>
                       <Col md={6}>₹{order.taxPrice}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      
                       <Col md={6}>Total</Col>
                       <Col md={6}>₹{order.totalPrice}</Col>
                     </Row>
@@ -313,7 +320,6 @@ props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_U
 
                   <ListGroup.Item>
                     <Col md={12}>
-                      
                       {razorpayLoading ? (
                         <Button
                           type="button"

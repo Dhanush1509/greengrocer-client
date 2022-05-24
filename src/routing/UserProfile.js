@@ -31,10 +31,10 @@ function UserProfile(props) {
     logout
   } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
-  useEffect(() => {
-    getUser();
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  //   //eslint-disable-next-line
+  // }, []);
   const [user, setUser] = useState({
     name: "",
     email: "",
