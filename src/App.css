@@ -10225,14 +10225,15 @@ figure figcaption h2 {
 .maindiv {
   display: flex;
   justify-content: center;
-max-width:800px;
+width:100%;
   padding: 0;
   
-  margin: 100px auto;
+  margin: 20px auto;
 
 }
 
 .newcard {
+width:100%;
   border-radius: 32px;
   box-shadow: 24px 24px 80px rgba(0, 0, 0, 0.1);
   padding: 20px 20px 28px 20px;
@@ -10255,7 +10256,7 @@ max-width:800px;
 }
 @media (min-width: 576px) {
   .card__image {
-    width: 50%;
+    width: 40%;
     max-height: none;
     min-height: 400px;
     margin-bottom: 0;

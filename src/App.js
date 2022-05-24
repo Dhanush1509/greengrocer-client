@@ -50,7 +50,7 @@ function App() {
                     <Fragment>
                       <Appbar />
                       <Alert />
-                      <div className="min-vh-100" style={{ marginTop: "75px",padding:"0 5vw"}}>
+                      <div className="min-vh-100" style={{ marginTop: "20px",padding:"0 5vw"}}>
                         <Switch>
                           <Route exact path="/" component={Home} />
                           <Route

@@ -9,7 +9,7 @@ function AlertComponent() {
     const {alerts}=AlertContext;
     const ProductContext=useContext(productContext);
     return alerts.map((alert, index) => (
-      <Container className="p-1">
+      <Container className="p-1" style={{marginBottom:"30px"}}>
         <Alert className="mt-1" style={{color:alert.color,backgroundColor:alert.bgColor,fontFamily: "'Inter',sans-serif"}}>{alert.msg}</Alert>
         
       </Container>
