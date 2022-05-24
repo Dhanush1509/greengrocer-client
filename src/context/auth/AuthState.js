@@ -44,7 +44,7 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_URL}users/login`, formData, config);
+      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/login`, formData, config);
       await dispatch({ type: LOGIN_USER, payload: data });
     } catch (err) {
       dispatch({ type: LOGIN_ERROR, payload:  err.response && err.response.data.message
@@ -54,7 +54,7 @@ function AuthState(props) {
   };
   const confirmation = async (email, token) => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}users/confirmation/${email}/${token}`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/confirmation/${email}/${token}`);
       dispatch({ type: CONFIRM_EMAIL, payload: data });
     } catch (err) {
       dispatch({
@@ -73,7 +73,7 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_URL}resendlink`, email, config);
+      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}resendlink`, email, config);
 
       dispatch({ type: RESEND_LINK, payload: data });
     } catch (err) {
@@ -90,7 +90,7 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_URL}users/register`, formData, config);
+      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/register`, formData, config);
 
       dispatch({ type: REGISTER_USER, payload: data });
     } catch (err) {
@@ -104,7 +104,7 @@ function AuthState(props) {
       setAuth(state.userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}users/profile`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/profile`);
       console.log(data)
       dispatch({ type: GET_USER, payload: data });
     } catch (err) {
@@ -126,7 +126,7 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.REACT_APP_URL}users/profile`, formData, config);
+      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/profile`, formData, config);
       dispatch({ type: UPDATE_USER, payload: data });
       getUser();
     } catch (err) {

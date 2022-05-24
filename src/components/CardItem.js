@@ -64,7 +64,7 @@ function CardItem(props) {
   function handleClick() {
     setFavourite((prev) => !prev);
   }
-  const shareUrl = `${process.env.REACT_APP_URLCLIENT_URL}products/${props._id}/`;
+  const shareUrl = `${process.env.REACT_APP_CLIENT_URL}products/${props._id}/`;
   const classes = useStyles();
 
   return (

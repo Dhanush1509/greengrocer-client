@@ -28,7 +28,7 @@ const ProductState = (props) => {
     try {
       dispatch({ type: LOADING_PRODUCTS });
       const { data } = await axios.get(
-        `${process.env.REACT_APP_URL}products?keyword=${keyword}&productpage=${number}`
+        `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products?keyword=${keyword}&productpage=${number}`
       );
       dispatch({ type: GET_PRODUCTS, payload: data });
     } catch (err) {
@@ -43,7 +43,7 @@ const ProductState = (props) => {
   const getProduct = async (id) => {
     try {
       dispatch({ type: LOADING_PRODUCTS });
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}products/${id}`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/${id}`);
       dispatch({ type: GET_PRODUCT, payload: data });
       // dispatch({ type: GET_PRODUCT_RESET})
     } catch (err) {

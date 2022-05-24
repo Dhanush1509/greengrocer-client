@@ -45,7 +45,7 @@ function OrderState(props) {
     };
     try {
       console.log(orderData);
-      const { data } = await axios.post(`${process.env.REACT_APP_URL}orders/addorder`, orderData, config);
+      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/addorder`, orderData, config);
       dispatch({
         type: ADD_ORDER_ITEMS,
         payload: data,
@@ -65,7 +65,7 @@ function OrderState(props) {
     }
 
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}orders/getorder/${orderId}`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/getorder/${orderId}`);
       dispatch({
         type: GET_ORDER,
         payload: data,
@@ -92,7 +92,7 @@ function OrderState(props) {
     };
     try {
       const { data } = await axios.post(
-     `${process.env.REACT_APP_URL}orders/razorpay/generateid`,
+     `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/razorpay/generateid`,
         totalPrice,
         config
       );
@@ -121,7 +121,7 @@ function OrderState(props) {
     };
     try {
       const { data } = await axios.put(
-     `${process.env.REACT_APP_URL}orders/payment/success`,
+     `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/payment/success`,
         formData,
         config
       );
@@ -145,7 +145,7 @@ function OrderState(props) {
 
       try {
         const { data } = await axios.get(
-       `${process.env.REACT_APP_URL}orders/myorders`,
+       `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/myorders`,
         );
       
         dispatch({

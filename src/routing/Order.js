@@ -62,7 +62,7 @@ const Order = (props) => {
 
   const [razorpayLoading, setRazorpayLoading] = useState(false);
   const handleTrack=()=>{
-props.history.push(`${process.env.REACT_APP_URL}order/${order._id}/track`)
+props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}order/${order._id}/track`)
   }
   function loadScript(src) {
     return new Promise((resolve) => {
@@ -91,7 +91,7 @@ props.history.push(`${process.env.REACT_APP_URL}order/${order._id}/track`)
     }
 
     setAuth(userData.token);
-    const result = await axios.post(`${process.env.REACT_APP_URL}orders/razorpay/generateid`, {
+    const result = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/razorpay/generateid`, {
       amount: order.totalPrice,
     });
 
@@ -103,7 +103,7 @@ props.history.push(`${process.env.REACT_APP_URL}order/${order._id}/track`)
     const { amount, id: order_id, currency } = result.data;
 
     const options = {
-      key: process.env.REACT_APP_URLRAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
       amount: amount.toString(),
       currency: currency,
       name: "Greengrocer",
@@ -120,7 +120,7 @@ props.history.push(`${process.env.REACT_APP_URL}order/${order._id}/track`)
         };
         // console.log(data);
         setAuth(userData.token);
-        const result = await axios.post(`${process.env.REACT_APP_URL}orders/payment/success`, data);
+        const result = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/payment/success`, data);
         getOrder(props.match.params.id);
       },
       prefill: {

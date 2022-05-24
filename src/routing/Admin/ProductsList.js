@@ -115,7 +115,7 @@ deleteProductByAdmin(id)
                       <EditIcon
                         style={{ color: "blue", cursor: "pointer" }}
                         onClick={() =>
-                          props.history.push(`${process.env.REACT_APP_URL}admin/product/${order._id}/edit`)
+                          props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}admin/product/${order._id}/edit`)
                         }
                       />
                     </TableCell>

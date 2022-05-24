@@ -30,7 +30,7 @@ import {
 } from "../types";
 import dotenv from "dotenv";
 dotenv.config()
-console.log(process.env.REACT_APP_URL)
+console.log(process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL)
 const AdminState = (props) => {
   const { userData } = useContext(AuthContext);
   const initialState = {
@@ -56,7 +56,7 @@ const AdminState = (props) => {
   const getAllProductsForAdmin = async () => {
     try {
       dispatch({ type: ORDER_LIST_LOADING });
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}products/admin`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin`);
       dispatch({ type: GET_ALL_PRODUCTS_FOR_ADMIN, payload: data });
     } catch (err) {
       dispatch({
@@ -74,7 +74,7 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}users/`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/`);
       dispatch({ type: GET_ALL_USERS, payload: data.users });
       dispatch({ type: GET_USERS_COUNT, payload: data.users });
     } catch (err) {
@@ -92,7 +92,7 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}users/${userId}`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`);
       dispatch({ type: GET_USER_BY_ID, payload: data });
     } catch (err) {
       dispatch({ type: GET_USER_BY_ID, payload:  err.response && err.response.data.message
@@ -105,7 +105,7 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.delete(`${process.env.REACT_APP_URL}users/${userId}`);
+      const { data } = await axios.delete(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`);
       dispatch({ type: DELETE_USER_BY_ADMIN, payload: data });
       document.location.href("/admin");
     } catch (err) {
@@ -127,7 +127,7 @@ const AdminState = (props) => {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.REACT_APP_URL}users/${userId}`, formData, config);
+      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`, formData, config);
       dispatch({ type: UPDATE_USER_BY_ADMIN, payload: data });
     } catch (err) {
       dispatch({
@@ -147,7 +147,7 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}orders`);
+      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders`);
       dispatch({ type: GET_ALL_ORDERS_FOR_ADMIN, payload: data.orders });
     } catch (err) {
       dispatch({
@@ -169,7 +169,7 @@ const AdminState = (props) => {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.REACT_APP_URL}orders/${Id}`, {}, config);
+      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/${Id}`, {}, config);
 
       dispatch({
         type: UPDATE_ORDER_TO_DELIVERED,
@@ -190,7 +190,7 @@ if (userData.token) {
 }
 dispatch({type:ORDER_LIST_LOADING})
 try {
-  const { data } = await axios.delete(`${process.env.REACT_APP_URL}products/admin/${id}`);
+  const { data } = await axios.delete(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/${id}`);
   dispatch({ type: DELETE_PRODUCT_BY_ADMIN, payload: data });
 } catch (err) {
   dispatch({
@@ -212,7 +212,7 @@ const createProductByAdmin = async (formData) => {
   };
   try {
     dispatch({ type: ORDER_LIST_LOADING });
-    const { data } = await axios.post(`${process.env.REACT_APP_URL}products/admin/addproduct`, formData, config);
+    const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/addproduct`, formData, config);
 
     dispatch({ type: ADD_PRODUCT_BY_ADMIN, payload: data });
   } catch (err) {
@@ -230,7 +230,7 @@ const config = {
 };
   try{
     dispatch({type:ORDER_LIST_LOADING})
-const {data}=await axios.put(`${process.env.REACT_APP_URL}products/admin/${id}`,formData, config)
+const {data}=await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/${id}`,formData, config)
 console.log(data)
 dispatch({type:UPDATE_PRODUCT_BY_ADMIN, payload: data})
   }

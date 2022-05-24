@@ -33,7 +33,7 @@ function CartState(props) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = async (id, addBool, quantity) => {
-    const { data } = await axios.get(`${process.env.REACT_APP_URL}products/` + id);
+    const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/` + id);
 
     await dispatch({
       type: CART_ADD_PRODUCT,
