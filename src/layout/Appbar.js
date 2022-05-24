@@ -31,7 +31,7 @@ function Appbar() {
   };
   return (
     <>
-      <Navbar bg="success" variant="dark" expand="lg" collapseOnSelect className="py-2" style={{boxShadow:"1px 1px 10px #a6a6a6",minHeight:"70px",}}>
+      <Navbar bg="success" variant="dark" expand="lg" collapseOnSelect className="py-2" style={{boxShadow:"1px 1px 10px #a6a6a6",minHeight:"70px",position:"relative",zIndex:4}}>
         <>
           <LinkContainer to="/">
             <Navbar.Brand>
