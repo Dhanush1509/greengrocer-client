@@ -42,7 +42,7 @@ const PlaceOrder = (props) => {
       props.history.push("/payment");
     }
 
-    if (success) {
+    if (success&&order&&order._id) {
       props.history.push("/order/" + order._id);
       emptyCart();
       resetAddOrder();

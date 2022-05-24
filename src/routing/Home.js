@@ -137,7 +137,7 @@ const Home = ({ history, match }) => {
           <HomeCarousel/>
         </>
       )}
-      <div style={{paddingTop:keyword?0:"400px"}}>
+      <div style={{paddingTop:keyword?0:"25vw"}}>
         {loading ? (
           <SpinnerLocal />
         ) : (

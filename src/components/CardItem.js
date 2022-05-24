@@ -71,9 +71,9 @@ function CardItem(props) {
     <Col
       id="cards"
       sm={12}
-      md={4}
-      lg={3}
-      x-lg={3}
+      md={6}
+      lg={4}
+      xl={3}
       className="mt-3"
       style={{ width: smallWidth, margin: smallMargin }}
     >

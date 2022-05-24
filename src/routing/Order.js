@@ -54,7 +54,7 @@ const Order = (props) => {
     if(userData.length === 0){
       props.history.push("/signin")
     }
-    else{
+    else if(!order){
     getOrder(props.match.params.id);
     }
     //eslint-disable-next-line
