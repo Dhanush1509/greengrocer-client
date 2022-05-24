@@ -21,8 +21,8 @@ function CartState(props) {
     ? JSON.parse(localStorage.getItem("deliveryAddress"))
     : [];
   const paymentInStorage = localStorage.getItem("paymentOption")
-    ? JSON.parse(localStorage.getItem("paymentOption"))
-    : [];
+    ? localStorage.getItem("paymentOption")
+    : "";
   const initialState = {
     cartItems: itemsInStorage,
     deliveryAddress: addressInStorage,
@@ -88,7 +88,7 @@ function CartState(props) {
     () => {
       localStorage.setItem(
         "paymentOption",
-        JSON.stringify(state.paymentOption)
+       state.paymentOption
       );
     },
     //eslint-disable-next-line

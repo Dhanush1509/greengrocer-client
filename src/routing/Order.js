@@ -137,7 +137,7 @@ const Order = (props) => {
             data
           );
         } catch (error) {
-          console.log(error);
+          console.log(error.response);
         }
         getOrder(props.match.params.id);
       },
