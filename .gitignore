@@ -73,6 +73,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+.env
 .env.REACT_APP_URL
 .env.REACT_APP_URLdevelopment.local
 .env.REACT_APP_URLtest.local
