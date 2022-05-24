@@ -11,7 +11,7 @@ import BusinessIcon from "@material-ui/icons/Business";
 const FooterIcons = () => {
   return (
     <div className="footer-icons">
-      <a href="mailto:greengrocer@gmail.com">
+      <a href="mailto:s.munidhanush15@gmail.com">
         <EmailIcon />
       </a>
       <a href="tel:234567788">
@@ -78,7 +78,7 @@ const Footer = () => {
               <div>
                 <EmailIcon style={{ color: "white" }} className="mr-1" />
 
-                <a href="mailto:greengrocer@gmail.com">greengrocer@gmail.com</a>
+                <a href="mailto:s.munidhanush15@gmail.com">s.munidhanush15@gmail.com</a>
               </div>
             </div>
             <div className="footer-right">
