@@ -29,28 +29,30 @@ import Resend from "./auth/Resend";
 import AdminPage from "./routing/Admin/AdminPage";
 import UsersList from "./routing/Admin/UsersList";
 import AdminUsersFunction from "./routing/Admin/Usersfunction";
-import HomePage from "./components/HomePage";
-import OrdersList from "./routing/Admin/OrderList"
+import Wishlist from "./routing/Wishlist";
+import OrdersList from "./routing/Admin/OrderList";
 import ProductsList from "./routing/Admin/ProductsList";
 import Footer from "./layout/Footer";
-import EditProduct from "./routing/Admin/ProductEdit"
+import EditProduct from "./routing/Admin/ProductEdit";
 import AddProduct from "./routing/Admin/ProductAdd";
+import ChatWindow from "./routing/ChatWindow";
 function App() {
   return (
     <div className="App">
       <AuthState>
         <AdminState>
           <CartState>
-            
             <ProductState>
               <OrderState>
                 <AlertState>
-                  
                   <Router>
                     <Fragment>
                       <Appbar />
                       <Alert />
-                      <div className="min-vh-100" style={{ marginTop: "20px",padding:"0 5vw"}}>
+                      <div
+                        className="min-vh-100"
+                        style={{ marginTop: "20px", padding: "0 5vw" }}
+                      >
                         <Switch>
                           <Route exact path="/" component={Home} />
                           <Route
@@ -81,6 +83,8 @@ function App() {
                             path="/profile"
                             component={Profile}
                           />
+                          <Route exact path="/wishlist" component={Wishlist} />
+                          <Route exact path="/chat" component={ChatWindow} />
                           <Route exact path="/myorders" component={MyOrder} />
                           <Route exact path="/order/:id" component={Order} />
                           <Route

@@ -13,9 +13,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-*{
-    margin:0;
-    padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 :root {
   --blue: #007bff;
@@ -10225,15 +10225,14 @@ figure figcaption h2 {
 .maindiv {
   display: flex;
   justify-content: center;
-width:100%;
+  width: 100%;
   padding: 0;
-  
-  margin: 20px auto;
 
+  margin: 20px auto;
 }
 
 .newcard {
-width:100%;
+  width: 100%;
   border-radius: 32px;
   box-shadow: 24px 24px 80px rgba(0, 0, 0, 0.1);
   padding: 20px 20px 28px 20px;
@@ -10298,4 +10297,16 @@ width:100%;
 
 .carousel img {
   height: 550px;
+}
+.chatInputContainer {
+  position: relative;
+  height:60vh;
+ 
+}
+.chatInput {
+  position: absolute;
+  bottom: 0;
+  transform:translateY(100%);
+  left: 0;
+  width: 100%;
 }

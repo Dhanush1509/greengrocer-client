@@ -1,4 +1,4 @@
-import React,{useState,useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { lighten, makeStyles } from "@material-ui/core/styles";
@@ -22,15 +22,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import Avatar from "@material-ui/core/Avatar";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
-import LetterAvatars from "./Avatar"
+import LetterAvatars from "./Avatar";
 import AdminContext from "../../context/admin/AdminContext";
 import GroupIcon from "@material-ui/icons/Group";
-import moment from "moment"
-import {Link} from "react-router-dom"
-
-
-
-
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -63,7 +59,7 @@ const headCells = [
     id: "avatar",
     numeric: false,
     disablePadding: true,
-    label:<GroupIcon fontSize="large"/>
+    label: <GroupIcon fontSize="large" />,
   },
   { id: "_id", numeric: true, disablePadding: false, label: "User id" },
   { id: "name", numeric: true, disablePadding: false, label: "Name" },
@@ -71,7 +67,7 @@ const headCells = [
   { id: "activity", numeric: true, disablePadding: false, label: "Activity" },
 ];
 function EnhancedTableHead(props) {
-                //   console.log(moment(2021-03-09T13:10:31.910Z))
+  //   console.log(moment(2021-03-09T13:10:31.910Z))
   const {
     classes,
     onSelectAllClick,
@@ -101,12 +97,10 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "default"}
-           
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
-              
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -239,7 +233,7 @@ export default function EnhancedTable() {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const { getAllUsers, users } = useContext(AdminContext);
+  const { getAllUsers, users } = useContext(AdminContext);
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -291,10 +285,11 @@ export default function EnhancedTable() {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, users?users.length:0 - page * rowsPerPage);
+    rowsPerPage -
+    Math.min(rowsPerPage, users ? users.length : 0 - page * rowsPerPage);
 
   return users ? (
-    <Paper className={classes.root} style={{marginTop:"50px"}}>
+    <Paper className={classes.root} style={{ marginTop: "50px" }}>
       <EnhancedTableToolbar numSelected={selected.length} />
       <TableContainer className={classes.container}>
         <Table
@@ -311,7 +306,7 @@ export default function EnhancedTable() {
             orderBy={orderBy}
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
-            rowCount={users?users.length:0}
+            rowCount={users ? users.length : 0}
           />
           <TableBody>
             {stableSort(users, getComparator(order, orderBy))
@@ -346,7 +341,12 @@ export default function EnhancedTable() {
                       <LetterAvatars avatarname={row.name} />
                     </TableCell>
                     <TableCell align="right">
-                    <Link to={`/admin/user/${row._id}`} style={{color: "black" }}>{row._id}</Link>
+                      <Link
+                        to={`/admin/user/${row._id}`}
+                        style={{ color: "black" }}
+                      >
+                        {row._id}
+                      </Link>
                     </TableCell>
                     <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
@@ -356,7 +356,8 @@ export default function EnhancedTable() {
                         .utc(row.updatedAt)
                         .utcOffset("+5:30")
                         .format("MMMM Do YYYY")}
-                      */}                    </TableCell>
+                      */}{" "}
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -371,7 +372,7 @@ export default function EnhancedTable() {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={users?users.length:0}
+        count={users ? users.length : 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}

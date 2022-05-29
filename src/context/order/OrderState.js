@@ -4,6 +4,7 @@ import OrderReducer from "./orderReducer";
 import axios from "axios";
 import AuthContext from "../auth/AuthContext";
 import setAuth from "../../utils/setAuthToken";
+
 import {
   ADD_ORDER_ITEMS,
   ADD_ORDER_ERROR,
@@ -18,7 +19,7 @@ import {
   RESET_ADD_ORDER,
   UPDATE_ORDER_TO_DELIVERED,
   UPDATE_ORDER_TO_DELIVERED_ERROR,
-  ORDER_CONTEXT_LOADING
+  ORDER_CONTEXT_LOADING,
 } from "../types.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -28,8 +29,8 @@ const initialState = {
   success: false,
   order: null,
   razorpayOptions: null,
-  myorders:[],
-  orderContextLoading:false
+  myorders: [],
+  orderContextLoading: false,
 };
 function OrderState(props) {
   const { userData } = useContext(AuthContext);
@@ -45,7 +46,15 @@ function OrderState(props) {
     };
     try {
       console.log(orderData);
-      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/addorder`, orderData, config);
+      const { data } = await axios.post(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/addorder`,
+        orderData,
+        config
+      );
       dispatch({
         type: ADD_ORDER_ITEMS,
         payload: data,
@@ -53,7 +62,8 @@ function OrderState(props) {
     } catch (err) {
       dispatch({
         type: ADD_ORDER_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -65,7 +75,13 @@ function OrderState(props) {
     }
 
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/getorder/${orderId}`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/getorder/${orderId}`
+      );
       dispatch({
         type: GET_ORDER,
         payload: data,
@@ -73,7 +89,8 @@ function OrderState(props) {
     } catch (err) {
       dispatch({
         type: GET_ORDER_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -81,7 +98,6 @@ function OrderState(props) {
   };
 
   const getOptions = async (totalPrice) => {
-  
     if (userData.token) {
       setAuth(userData.token);
     }
@@ -92,11 +108,15 @@ function OrderState(props) {
     };
     try {
       const { data } = await axios.post(
-     `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/razorpay/generateid`,
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/razorpay/generateid`,
         totalPrice,
         config
       );
-    
+
       dispatch({
         type: GET_OPTIONS,
         payload: data,
@@ -104,7 +124,8 @@ function OrderState(props) {
     } catch (err) {
       dispatch({
         type: GET_OPTIONS_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -121,7 +142,11 @@ function OrderState(props) {
     };
     try {
       const { data } = await axios.put(
-     `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/payment/success`,
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/payment/success`,
         formData,
         config
       );
@@ -132,40 +157,45 @@ function OrderState(props) {
     } catch (err) {
       dispatch({
         type: UPDATE_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
     }
   };
-  const getMyOrders=async ()=>{
-      if (userData.token) {
-        setAuth(userData.token);
-      }
+  const getMyOrders = async () => {
+    if (userData.token) {
+      setAuth(userData.token);
+    }
 
-      try {
-        const { data } = await axios.get(
-       `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/myorders`,
-        );
-      
-        dispatch({
-          type: GET_MY_ORDERS,
-          payload: data,
-        });
-      } catch (err) {
-        dispatch({
-          type:GET_MY_ORDERS_ERROR,
-          payload:  err.response && err.response.data.message
+    try {
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/myorders`
+      );
+
+      dispatch({
+        type: GET_MY_ORDERS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_MY_ORDERS_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
-        });
-      }
-  }
-  const resetAddOrder=() => {
-    dispatch({type:RESET_ADD_ORDER})
-  }
- 
-  
+      });
+    }
+  };
+  const resetAddOrder = () => {
+    dispatch({ type: RESET_ADD_ORDER });
+  };
+
   return (
     <OrderContext.Provider
       value={{
@@ -181,7 +211,6 @@ function OrderState(props) {
         success: state.success,
         myorders: state.myorders,
         updateOrderToSuccess,
-       
       }}
     >
       {props.children}

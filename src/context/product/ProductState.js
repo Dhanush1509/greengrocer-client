@@ -11,6 +11,9 @@ import {
   GET_PRODUCT_RESET,
   LOADING_PRODUCTS,
   GET_PRODUCTS_RESET,
+  ADD_WISHLIST,
+  GET_WISHLIST,
+  WISHLIST_LOADING,
 } from "../types.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -22,19 +25,27 @@ const ProductState = (props) => {
     page: null,
     totalPages: null,
     loading: false,
+    wishlist: [],
+    wishLoading:true
   };
   const [state, dispatch] = useReducer(productReducer, initialState);
   const getProducts = async (keyword = "", number = "") => {
     try {
       dispatch({ type: LOADING_PRODUCTS });
+      if (!state.wishlist || !state.wishlist.length > 0) await getWishList();
       const { data } = await axios.get(
-        `${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products?keyword=${keyword}&productpage=${number}`
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products?keyword=${keyword}&productpage=${number}`
       );
       dispatch({ type: GET_PRODUCTS, payload: data });
     } catch (err) {
       dispatch({
         type: PRODUCTS_ERR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -43,13 +54,65 @@ const ProductState = (props) => {
   const getProduct = async (id) => {
     try {
       dispatch({ type: LOADING_PRODUCTS });
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/${id}`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/${id}`
+      );
       dispatch({ type: GET_PRODUCT, payload: data });
       // dispatch({ type: GET_PRODUCT_RESET})
     } catch (err) {
       dispatch({
         type: PRODUCT_ERR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message,
+      });
+    }
+  };
+  const addWishList = async (id) => {
+    console.log(id);
+    try {
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/wishlist/${id}`
+      );
+      console.log(data);
+      dispatch({ type: ADD_WISHLIST, payload: data });
+      // dispatch({ type: GET_PRODUCT_RESET})
+    } catch (err) {
+      dispatch({
+        type: PRODUCT_ERR,
+        payload:
+          err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message,
+      });
+    }
+  };
+  const getWishList = async () => {
+    try {
+      dispatch({ type: WISHLIST_LOADING });
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/getwishlist`
+      );
+      dispatch({ type: GET_WISHLIST, payload: data });
+      // dispatch({ type: GET_PRODUCT_RESET})
+    } catch (err) {
+      dispatch({
+        type: PRODUCT_ERR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -78,6 +141,10 @@ const ProductState = (props) => {
         page: state.page,
         totalPages: state.totalPages,
         loading: state.loading,
+        addWishList,
+        getWishList,
+        wishlist: state.wishlist,
+        wishLoading:state.wishLoading
       }}
     >
       {props.children}

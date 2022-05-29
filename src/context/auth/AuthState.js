@@ -19,6 +19,7 @@ import {
   CLEAR_MESSAGE,
   CONFIRM_EMAIL,
   CONFIRM_EMAIL_ERROR,
+  SET_NOTIFICATION
 } from "../types.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -33,33 +34,55 @@ function AuthState(props) {
     message: null,
     userData: userInfoStorage,
     userDetails: {},
+    notifications:[]
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
-
+const setNotification=(p)=>{
+  dispatch({ type:SET_NOTIFICATION, payload: p})
+}
   const loginUser = async (formData) => {
-    console.log(formData)
+    console.log(formData);
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/login`, formData, config);
+      const { data } = await axios.post(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/login`,
+        formData,
+        config
+      );
       await dispatch({ type: LOGIN_USER, payload: data });
     } catch (err) {
-      dispatch({ type: LOGIN_ERROR, payload:  err.response && err.response.data.message
+      dispatch({
+        type: LOGIN_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const confirmation = async (email, token) => {
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/confirmation/${email}/${token}`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/confirmation/${email}/${token}`
+      );
       dispatch({ type: CONFIRM_EMAIL, payload: data });
     } catch (err) {
       dispatch({
         type: CONFIRM_EMAIL_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -73,13 +96,25 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}resendlink`, email, config);
+      const { data } = await axios.post(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }resendlink`,
+        email,
+        config
+      );
 
       dispatch({ type: RESEND_LINK, payload: data });
     } catch (err) {
-      dispatch({ type: RESEND_LINK_ERROR, payload:  err.response && err.response.data.message
+      dispatch({
+        type: RESEND_LINK_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const registerUser = async (formData) => {
@@ -90,13 +125,25 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/register`, formData, config);
+      const { data } = await axios.post(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/register`,
+        formData,
+        config
+      );
 
       dispatch({ type: REGISTER_USER, payload: data });
     } catch (err) {
-      dispatch({ type: REGISTER_ERROR, payload:  err.response && err.response.data.message
+      dispatch({
+        type: REGISTER_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const getUser = async () => {
@@ -104,16 +151,28 @@ function AuthState(props) {
       setAuth(state.userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/profile`);
-      console.log(data)
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/profile`
+      );
+      console.log(data);
       dispatch({ type: GET_USER, payload: data });
     } catch (err) {
-      console.log( err.response && err.response.data.message
+      console.log(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+      dispatch({
+        type: GET_USER_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message);
-      dispatch({ type: GET_USER_ERROR, payload:  err.response && err.response.data.message
-            ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const updateUser = async (formData) => {
@@ -126,13 +185,25 @@ function AuthState(props) {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/profile`, formData, config);
+      const { data } = await axios.put(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/profile`,
+        formData,
+        config
+      );
       dispatch({ type: UPDATE_USER, payload: data });
       getUser();
     } catch (err) {
-      dispatch({ type: GET_USER_ERROR, payload:  err.response && err.response.data.message
+      dispatch({
+        type: GET_USER_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const logout = () => {
@@ -175,6 +246,8 @@ function AuthState(props) {
         isAuthenticated: state.isAuthenticated,
         userData: state.userData,
         loading: state.loading,
+        setNotification,
+        notifications: state.notifications
       }}
     >
       {props.children}

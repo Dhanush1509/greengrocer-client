@@ -35,7 +35,7 @@ const ProgressBar = ({ animate, time }) => {
 };
 const Carousel = () => {
   const [show, setShow] = useState(false);
-  const SLIDE_DURATION = 5000;
+  const SLIDE_DURATION = 7000;
   let [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -43,7 +43,7 @@ const Carousel = () => {
         case "PROGRESS":
           return {
             ...state,
-            isPlaying: action.type === "PROGRESS",
+            isPlaying: true,
             currentIndex: (state.currentIndex + 1) % slides.length,
           };
         case "PAUSE":
@@ -61,7 +61,7 @@ const Carousel = () => {
             ...state,
             currentIndex:
               (state.currentIndex - 1 + slides.length) % slides.length,
-            isPlaying: false,
+            isPlaying: true,
           };
         case "GOTO":
           return {
@@ -96,8 +96,6 @@ const Carousel = () => {
 
   return (
     <section className={styles.carousel}>
-
-
       <ul
         className={styles.slides}
         onMouseEnter={() => setShow(true)}
@@ -110,9 +108,7 @@ const Carousel = () => {
             key={index}
             aria-hidden={index != state.currentIndex}
             tabIndex="-1"
-          >
-          
-          </li>
+          ></li>
         ))}
         <ul className={styles.SlideNav}>
           {slides.map((slide, index) => (

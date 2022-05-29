@@ -1,15 +1,21 @@
-import React, { useState,useContext,useEffect } from "react";
-import {Form,Button,Spinner} from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import React, { useState, useContext, useEffect } from "react";
+import { Form, Button, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import AuthContext from "../context/auth/AuthContext";
 import AlertContext from "../context/alert/AlertContext";
 // import "../App.css";
 const Register = (props) => {
-   
-  const { loading,clearErrors, registerUser, error, isAuthenticated,userData,message,clearMessages } = useContext(
-    AuthContext
-  );
+  const {
+    loading,
+    clearErrors,
+    registerUser,
+    error,
+    isAuthenticated,
+    userData,
+    message,
+    clearMessages,
+  } = useContext(AuthContext);
 
   const { setAlert, alerts } = useContext(AlertContext);
   const [user, setUser] = useState({
@@ -19,49 +25,47 @@ const Register = (props) => {
     password2: "",
   });
   const { name, email, password, password2 } = user;
-  const [localLoading,setLocalLoading]=useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
   useEffect(() => {
     if (error === "User already exists") {
       setAlert(error, "white", "red");
       clearErrors();
     }
-    if(message){
-    if(message.substring(0,14)==="A verification"){
-      props.history.push("/user/confirm")
-      clearMessages()
+    if (message) {
+      if (message.substring(0, 14) === "A verification") {
+        props.history.push("/user/confirm");
+        clearMessages();
+      }
     }
-  }
- 
+
     //eslint-disable-next-line
-  }, [error,message]);
-  
-     const redirect = props.location.search
-       ? props.location.search.split("=")[1]
-       : "/";
+  }, [error, message]);
+
+  const redirect = props.location.search
+    ? props.location.search.split("=")[1]
+    : "/";
   //  useEffect(() => {
   //    if (userData.length !== 0) {
   //      props.history.push(redirect);
   //    }
 
-     //eslint-disable-next-line
+  //eslint-disable-next-line
   //  }, [userData]);
-   
-    const onSubmit = (e) => {
-      e.preventDefault();
-      if (email === "" || password === ""||password2===""||name === "") {
-        setAlert("Fields cannot be empty", "white", "red");
-        clearErrors();
-      }else if(password!==password2){
-          setAlert("Passwords did not match", "white", "red");
-          clearErrors();
-      }
-       else {
-         setLocalLoading(true)
-        registerUser({name, email, password });
-      
-      }
-    };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (email === "" || password === "" || password2 === "" || name === "") {
+      setAlert("Fields cannot be empty", "white", "red");
+      clearErrors();
+    } else if (password !== password2) {
+      setAlert("Passwords did not match", "white", "red");
+      clearErrors();
+    } else {
+      setLocalLoading(true);
+      registerUser({ name, email, password });
+    }
+  };
   return (
     <div
       className="form-container"
@@ -126,7 +130,11 @@ const Register = (props) => {
         </Button>
       </Form>
       <p
-        style={{ textAlign: "left", color: "black",fontFamily: "'Inter',sans-serif"  }}
+        style={{
+          textAlign: "left",
+          color: "black",
+          fontFamily: "'Inter',sans-serif",
+        }}
         className="mt-3"
       >
         Have an account?
@@ -138,4 +146,3 @@ const Register = (props) => {
   );
 };
 export default Register;
-

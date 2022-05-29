@@ -7,7 +7,7 @@ import adminContext from "../../context/admin/AdminContext";
 import alertContext from "../../context/alert/AlertContext";
 
 import authContext from "../../context/auth/AuthContext";
-import Loader from "../../layout/Spinner"
+import Loader from "../../layout/Spinner";
 const ProductEditScreen = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -15,32 +15,33 @@ const ProductEditScreen = (props) => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-  const [keywords, setKeywords]=useState("");
+  const [keywords, setKeywords] = useState("");
   const ProductContext = useContext(productContext);
-  const AdminContext=useContext(adminContext);
+  const AdminContext = useContext(adminContext);
   const AlertContext = useContext(alertContext);
+  const { getProduct, product, getProductReset, loading } = ProductContext;
+  const { userData } = useContext(authContext);
   const {
-    getProduct,
-    product,
-    getProductReset,
-    loading
-  } = ProductContext;
-  const {userData}=useContext(authContext);
-const {updateProductByAdmin,orderListLoading,success,adminMessage,clearAdminMessage} = AdminContext;
-const {setAlert}=AlertContext
+    updateProductByAdmin,
+    orderListLoading,
+    success,
+    adminMessage,
+    clearAdminMessage,
+  } = AdminContext;
+  const { setAlert } = AlertContext;
   useEffect(() => {
-     if (userData) {
-       if (userData.isAdmin === false) {
-         props.history.push("/");
-       }
-     }
-     if (userData.length === 0) {
-       props.history.push("/");
-     }
+    if (userData) {
+      if (userData.isAdmin === false) {
+        props.history.push("/");
+      }
+    }
+    if (userData.length === 0) {
+      props.history.push("/");
+    }
     if (!product) {
       getProduct(props.match.params.id);
     }
-    
+
     if (product) {
       setName(product.name);
       setPrice(product.price);
@@ -48,20 +49,20 @@ const {setAlert}=AlertContext
       setCategory(product.category);
       setCountInStock(product.countInStock);
       setDescription(product.description);
-      setKeywords(product.keywords)
+      setKeywords(product.keywords);
     }
-    if(adminMessage){
+    if (adminMessage) {
       getProduct(props.match.params.id);
-setAlert("Product updated Successfully","white","#56cc9d");
-clearAdminMessage()
+      setAlert("Product updated Successfully", "white", "#56cc9d");
+      clearAdminMessage();
     }
     //eslint-disable-next-line
-  }, [props.match.params.id,product,success,adminMessage]);
+  }, [props.match.params.id, product, success, adminMessage]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     updateProductByAdmin(
-      { name, price, image, category, countInStock, description,keywords },
+      { name, price, image, category, countInStock, description, keywords },
       props.match.params.id
     );
   };

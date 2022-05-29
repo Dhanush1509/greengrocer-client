@@ -4,7 +4,7 @@ import {
   TOTAL_COST,
   SAVE_ADDRESS,
   SAVE_PAYMENT_OPTION,
-  EMPTY_CART
+  EMPTY_CART,
 } from "../types.js";
 
 const cartReducer = (state, action) => {
@@ -25,34 +25,33 @@ const cartReducer = (state, action) => {
           cartItems: [...state.cartItems, item],
         };
       }
-      case EMPTY_CART:
-          localStorage.removeItem("cartItems");
-        return{
-          ...state,cartItems:[]
-        }
-      
+    case EMPTY_CART:
+      localStorage.removeItem("cartItems");
+      return {
+        ...state,
+        cartItems: [],
+      };
+
     case DELETE_ITEM_FROM_CART:
       return {
         ...state,
         cartItems: state.cartItems.filter((i) => i.id !== action.payload),
       };
     case TOTAL_COST:
-      let m=0;
-      state.cartItems.map(
-        (i) => (m = m + (i.price * i.quantity))
-      );
+      let m = 0;
+      state.cartItems.map((i) => (m = m + i.price * i.quantity));
       return { ...state, total: m };
     case SAVE_ADDRESS:
-    console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
-        deliveryAddress:action.payload
+        deliveryAddress: action.payload,
       };
-      case SAVE_PAYMENT_OPTION:
-return{
-  ...state,
-  paymentOption:action.payload
-}
+    case SAVE_PAYMENT_OPTION:
+      return {
+        ...state,
+        paymentOption: action.payload,
+      };
     default:
       return state;
   }

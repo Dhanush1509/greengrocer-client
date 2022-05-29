@@ -107,7 +107,6 @@ const Order = (props) => {
                 .map((order) => (
                   <TableRow hover role="checkbox" tabIndex={-1} key={order._id}>
                     <TableCell align="right">
-                      
                       <Link to={`/order/${order._id}`}>{order._id}</Link>
                     </TableCell>
                     <TableCell style={{ minWidth: 300 }} align="right">

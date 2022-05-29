@@ -26,7 +26,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import LaunchIcon from "@material-ui/icons/Launch";
-import Loader from "../../layout/Spinner"
+import Loader from "../../layout/Spinner";
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -232,21 +232,21 @@ export default function UsersList(props) {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  
-  const { getAllUsers, users,orderListLoading } = useContext(AdminContext);
- const { userData } = useContext(AuthContext);
-     useEffect(() => {
-       getAllUsers();
-       if (userData) {
-         if (userData.isAdmin === false) {
-           props.history.push("/");
-         }
-       }
-       if (userData.length===0) {
-         props.history.push("/");
-       }
-       //eslint-disable-next-line
-     }, []);
+
+  const { getAllUsers, users, orderListLoading } = useContext(AdminContext);
+  const { userData } = useContext(AuthContext);
+  useEffect(() => {
+    getAllUsers();
+    if (userData) {
+      if (userData.isAdmin === false) {
+        props.history.push("/");
+      }
+    }
+    if (userData.length === 0) {
+      props.history.push("/");
+    }
+    //eslint-disable-next-line
+  }, []);
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -291,16 +291,14 @@ export default function UsersList(props) {
     setPage(0);
   };
 
-  
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows =
     rowsPerPage -
     Math.min(rowsPerPage, users ? users.length : 0 - page * rowsPerPage);
- 
+
   return users && !orderListLoading ? (
     <>
-    
       <Paper className={classes.root} style={{ marginTop: "50px" }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer className={classes.container}>
@@ -371,7 +369,6 @@ export default function UsersList(props) {
                       */}
                       </TableCell>
                       <TableCell align="right">
-                        
                         <Link
                           to={`/admin/user/${row._id}`}
                           style={{ color: "black" }}
@@ -403,7 +400,7 @@ export default function UsersList(props) {
     </>
   ) : (
     <>
-     <Loader/>
+      <Loader />
     </>
   );
 }

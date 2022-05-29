@@ -18,9 +18,7 @@ const defaultOptions = {
 
 // import "../App.css";
 const AddressPage = (props) => {
-  const { loading, clearErrors, error,  userData } = useContext(
-    AuthContext
-  );
+  const { loading, clearErrors, error, userData } = useContext(AuthContext);
   const { saveAddress, deliveryAddress } = useContext(CartContext);
 
   const { setAlert, alerts } = useContext(AlertContext);
@@ -35,7 +33,7 @@ const AddressPage = (props) => {
     setDelivery({ ...delivery, [e.target.name]: e.target.value });
 
   useEffect(() => {
-    if (userData.length===0) {
+    if (userData.length === 0) {
       props.history.push("/signin?redirect=address");
     }
     if (deliveryAddress) {

@@ -1,12 +1,19 @@
-import React, { useContext} from "react";
-import { Row, Col,Card} from "react-bootstrap";
+import React, { useContext } from "react";
+import { Row, Col, Card } from "react-bootstrap";
 import AdminContext from "../../context/admin/AdminContext";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import {Link} from "react-router-dom"
-import Loader from "../../layout/Spinner"
+import { Link } from "react-router-dom";
+import Loader from "../../layout/Spinner";
 
 const AdminHeader = () => {
-    const { usersCount,ordersCount,paymentsCount,pendingDeliveredItemsCount,deliveredItemsCount,orderListLoading } = useContext(AdminContext);
+  const {
+    usersCount,
+    ordersCount,
+    paymentsCount,
+    pendingDeliveredItemsCount,
+    deliveredItemsCount,
+    orderListLoading,
+  } = useContext(AdminContext);
 
   return orderListLoading ? (
     <>

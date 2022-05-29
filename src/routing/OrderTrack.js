@@ -37,13 +37,8 @@ const OrderTrack = (props) => {
 
     //eslint-disable-next-line
   }, []);
-  const {
-    getOrder,
-    order,
-    updateOrderToSuccess,
-    getOptions,
-    razorpayOptions,
-  } = useContext(OrderContext);
+  const { getOrder, order, updateOrderToSuccess, getOptions, razorpayOptions } =
+    useContext(OrderContext);
   console.log(props.match.params.id);
 
   return (
@@ -64,14 +59,12 @@ const OrderTrack = (props) => {
         <section className="root-order-track p-5">
           <Row>
             <Col sm={2}>
-              
               <img
                 src="https://image.flaticon.com/icons/svg/970/970514.svg"
                 alt=""
               />
             </Col>
             <Col>
-              
               <h4>Tracking Details</h4>
               <h6>Order ID: {order._id}</h6>
             </Col>

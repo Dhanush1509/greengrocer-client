@@ -10,14 +10,8 @@ const Login = (props) => {
     password: "",
   });
   const [loadingPage, setLoadingPage] = useState(false);
-  const {
-    loading,
-    clearErrors,
-    loginUser,
-    error,
-    isAuthenticated,
-    userData,
-  } = useContext(AuthContext);
+  const { loading, clearErrors, loginUser, error, isAuthenticated, userData } =
+    useContext(AuthContext);
 
   const { setAlert, alerts } = useContext(AlertContext);
 
@@ -54,10 +48,10 @@ const Login = (props) => {
     if (email === "" || password === "") {
       setAlert("Fields cannot be empty", "white", "red");
       clearErrors();
-    setLoadingPage(false);
+      setLoadingPage(false);
     } else {
       loginUser({ email, password });
-    setLoadingPage(false);
+      setLoadingPage(false);
     }
   };
   return (
@@ -98,7 +92,8 @@ const Login = (props) => {
                 size="sm"
                 role="status"
                 aria-hidden="true"
-              /> Login<span className="sr-only">Loading...</span>
+              />{" "}
+              Login<span className="sr-only">Loading...</span>
             </>
           ) : (
             <>Login</>
@@ -106,7 +101,11 @@ const Login = (props) => {
         </Button>
       </Form>
       <p
-        style={{ textAlign: "left", color: "black",fontFamily:"'Inter',sans-serif" }}
+        style={{
+          textAlign: "left",
+          color: "black",
+          fontFamily: "'Inter',sans-serif",
+        }}
         className="mt-3"
       >
         New Customer?

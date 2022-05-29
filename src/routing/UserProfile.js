@@ -10,7 +10,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 const defaultOptions = {
   loop: false,
   autoplay: true,
@@ -28,7 +28,7 @@ function UserProfile(props) {
     updateUser,
     error,
     clearErrors,
-    logout
+    logout,
   } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
   // useEffect(() => {
@@ -79,17 +79,17 @@ function UserProfile(props) {
     if (password !== password2) {
       setAlert("Passwords did not match", "white", "red");
       clearErrors();
+    } else {
+      updateUser({
+        name,
+        email,
+        password,
+      });
     }
-   else{ updateUser({
-      name,
-      email,
-      password,
-    });
-  }
   };
   return userDetails ? (
     <>
-      <Row style={{ color: "black"}}>
+      <Row style={{ color: "black" }}>
         <Col lg={3} sm={12}>
           <Col>
             <Lottie
@@ -170,7 +170,7 @@ function UserProfile(props) {
                   maxLength="30"
                 />
               </Form.Group>
-              
+
               <Form.Group controlId="formGroupPassword">
                 <Form.Control
                   type="password"

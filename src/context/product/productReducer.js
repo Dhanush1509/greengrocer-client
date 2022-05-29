@@ -7,6 +7,9 @@ import {
   CLEAR_PRODUCT_ERRORS,
   GET_PRODUCTS_RESET,
   LOADING_PRODUCTS,
+  ADD_WISHLIST,
+  GET_WISHLIST,
+  WISHLIST_LOADING,
 } from "../types.js";
 
 const productReducer = (state, action) => {
@@ -27,6 +30,14 @@ const productReducer = (state, action) => {
         product: null,
         error: action.payload,
       };
+    case ADD_WISHLIST:
+      return { ...state, wishlist: action.payload.wishList };
+    case GET_WISHLIST:
+      return {
+        ...state,
+        wishlist: action.payload.wishList,
+        wishLoading:false
+      };
     case GET_PRODUCT:
       return {
         ...state,
@@ -34,6 +45,8 @@ const productReducer = (state, action) => {
         loading: false,
         // state.products.filter(product=>product._id===action.payload.id)
       };
+      case WISHLIST_LOADING:
+        return {...state,wishLoading:true}
     case CLEAR_PRODUCT_ERRORS:
       return {
         ...state,

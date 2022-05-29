@@ -63,7 +63,6 @@ const Footer = () => {
 
         {window.innerWidth > 720 ? (
           <>
-            
             <div className="footer-center">
               <div className="mb-2" style={{ color: "white" }}>
                 <BusinessIcon style={{ color: "white" }} className="mr-1" />
@@ -78,7 +77,9 @@ const Footer = () => {
               <div>
                 <EmailIcon style={{ color: "white" }} className="mr-1" />
 
-                <a href="mailto:s.munidhanush15@gmail.com">s.munidhanush15@gmail.com</a>
+                <a href="mailto:s.munidhanush15@gmail.com">
+                  s.munidhanush15@gmail.com
+                </a>
               </div>
             </div>
             <div className="footer-right">

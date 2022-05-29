@@ -2,12 +2,12 @@ import img1 from "../assets/images/image2.jpg";
 import img2 from "../assets/images/image3.jpg";
 import img3 from "../assets/images/image5.jpg";
 import offer from "../assets/images/offer.png";
-import tomato from "../assets/images/tomato.png"
+import tomato from "../assets/images/tomato.png";
 const slides = [
-  {img:offer},
-  {img:tomato},
+  { img: offer },
+  { img: tomato },
   // {
-    
+
   //   img: img1,
   //   title: "Lagoon Nebula (Visible-light View)",
   //   content: (

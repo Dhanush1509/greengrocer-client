@@ -44,7 +44,6 @@ const PaymentPage = (props) => {
         className="form-container"
         style={{ textAlign: "left", color: "black" }}
       >
-        
         <h1 style={{ color: "black" }}>Payment Option</h1>
         <Lottie
           options={defaultOptions}

@@ -7,16 +7,11 @@ import productContext from "../context/product/productContext";
 import alertContext from "../context/alert/AlertContext";
 import cartContext from "../context/cart/cartContext";
 import Helmet from "../components/Title";
-import Loader from "../layout/Spinner"
+import Loader from "../layout/Spinner";
 function Product(props, history) {
   const ProductContext = useContext(productContext);
-  const {
-    getProduct,
-    product,
-    loading,
-    error,
-    getProductReset,
-  } = ProductContext;
+  const { getProduct, product, loading, error, getProductReset } =
+    ProductContext;
   const CartContext = useContext(cartContext);
   const { addToCart, cartItems } = CartContext;
   const AlertContext = useContext(alertContext);
@@ -76,7 +71,6 @@ function Product(props, history) {
     <div className="m-auto">
       <Helmet title={product.name} />
       <div className="maindiv" style={{ textAlign: "left" }}>
-        
         <div className="newcard">
           <img src={product.image} className="card__image" alt="brown couch" />
           <div className="card__content">
@@ -119,8 +113,8 @@ function Product(props, history) {
       </div>
     </div>
   ) : (
-    <Loader/>
-  )
+    <Loader />
+  );
 }
 
 export default Product;

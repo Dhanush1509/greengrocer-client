@@ -27,9 +27,8 @@ const PlaceOrder = (props) => {
     total,
     emptyCart,
   } = useContext(cartContext);
-  const { addOrder, orderDetails, order, success, resetAddOrder } = useContext(
-    orderContext
-  );
+  const { addOrder, orderDetails, order, success, resetAddOrder } =
+    useContext(orderContext);
   const { userData } = useContext(authContext);
   useEffect(() => {
     if (userData.length === 0) {
@@ -42,7 +41,7 @@ const PlaceOrder = (props) => {
       props.history.push("/payment");
     }
 
-    if (success&&order&&order._id) {
+    if (success && order && order._id) {
       props.history.push("/order/" + order._id);
       emptyCart();
       resetAddOrder();
@@ -75,10 +74,9 @@ const PlaceOrder = (props) => {
       <>
         <Row>
           <Col md={8}>
-            <ListGroup style={{ color: "black"}}>
+            <ListGroup style={{ color: "black" }}>
               <ListGroup.Item>
                 <ListGroup.Item>
-                  
                   <h2>Delivery Address </h2>
                 </ListGroup.Item>
                 <Lottie
@@ -103,7 +101,6 @@ const PlaceOrder = (props) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <ListGroup.Item>
-                  
                   <h2>Payment Option</h2>
                 </ListGroup.Item>
                 <p className="mt-3">{paymentOption}</p>
@@ -119,17 +116,14 @@ const PlaceOrder = (props) => {
                 </Link>
               </ListGroup.Item>
               <ListGroup.Item>
-                
                 <ListGroup.Item>
                   <h2>Order Items</h2>
                 </ListGroup.Item>
                 {cartItems.length > 0 ? (
                   cartItems.map((item) => (
                     <ListGroup.Item key={item.id}>
-                      
                       <Row>
                         <Col md={1}>
-                          
                           <Image
                             src={item.image}
                             alt={item.name}
@@ -143,7 +137,6 @@ const PlaceOrder = (props) => {
                           </Link>
                         </Col>
                         <Col md={5} className="my-auto">
-                          
                           <h6>
                             {item.quantity} X ₹{item.price}/kg=₹
                             {Math.floor(item.price * item.quantity)}
@@ -170,28 +163,24 @@ const PlaceOrder = (props) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    
                     <Col md={6}>Items Cost</Col>
                     <Col md={6}>₹{total ? total : 0}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    
                     <Col md={6}>Delivery Charge</Col>
                     <Col md={6}>₹{deliveryPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    
                     <Col md={6}>Tax Charge</Col>
                     <Col md={6}>₹{taxPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    
                     <Col md={6}>Total</Col>
                     <Col md={6}>₹{totalPrice}</Col>
                   </Row>
@@ -202,7 +191,6 @@ const PlaceOrder = (props) => {
                     <Button
                       type="button"
                       className="btn-block"
-                
                       onClick={placeOrderHandler}
                       disabled={cartItems.length === 0}
                     >

@@ -9,7 +9,7 @@ import {
   TOTAL_COST,
   SAVE_ADDRESS,
   SAVE_PAYMENT_OPTION,
-  EMPTY_CART
+  EMPTY_CART,
 } from "../types.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -33,7 +33,13 @@ function CartState(props) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = async (id, addBool, quantity) => {
-    const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/` + id);
+    const { data } = await axios.get(
+      `${
+        process.env.NODE_ENV == "production"
+          ? process.env.REACT_APP_URL
+          : process.env.REACT_APP_DEV_URL
+      }products/` + id
+    );
 
     await dispatch({
       type: CART_ADD_PRODUCT,
@@ -64,9 +70,9 @@ function CartState(props) {
   const savePaymentOption = (data) => {
     dispatch({ type: SAVE_PAYMENT_OPTION, payload: data });
   };
-  const emptyCart=()=>{
-    dispatch({ type:EMPTY_CART})
-  }
+  const emptyCart = () => {
+    dispatch({ type: EMPTY_CART });
+  };
   useEffect(
     () => {
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -86,10 +92,7 @@ function CartState(props) {
   );
   useEffect(
     () => {
-      localStorage.setItem(
-        "paymentOption",
-       state.paymentOption
-      );
+      localStorage.setItem("paymentOption", state.paymentOption);
     },
     //eslint-disable-next-line
     [state.paymentOption]

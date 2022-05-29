@@ -10,7 +10,7 @@ import {
   GET_MY_ORDERS,
   GET_MY_ORDERS_ERROR,
   RESET_ADD_ORDER,
-  ORDER_CONTEXT_LOADING
+  ORDER_CONTEXT_LOADING,
 } from "../types";
 
 const OrderReducer = (state, action) => {
@@ -25,7 +25,6 @@ const OrderReducer = (state, action) => {
     case GET_ORDER_ERROR:
     case GET_OPTIONS_ERROR:
     case GET_MY_ORDERS_ERROR:
-
       return {
         ...state,
         error: action.payload,
@@ -44,7 +43,7 @@ const OrderReducer = (state, action) => {
       return {
         ...state,
         myorders: [...action.payload],
-        success:true
+        success: true,
       };
     case RESET_ADD_ORDER:
       return {
@@ -52,7 +51,7 @@ const OrderReducer = (state, action) => {
         order: null,
         success: false,
       };
-  
+
     default:
       return state;
   }

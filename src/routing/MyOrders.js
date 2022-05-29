@@ -12,7 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import authContext from "../context/auth/AuthContext";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 const MyOrders = (props) => {
   const { getMyOrders, myorders } = useContext(orderContext);
 

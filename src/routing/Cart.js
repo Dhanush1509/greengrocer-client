@@ -60,10 +60,7 @@ function Cart() {
     //eslint-disable-next-line
   }, [cartItems]);
   return cartItems.length > 0 ? (
-    <div
-      className="mt-4"
-   
-    >
+    <div className="mt-4">
       <Row>
         <Col md={8}>
           <h2 style={{ textAlign: "left" }} className="m-3">
@@ -72,19 +69,15 @@ function Cart() {
           <ListGroup style={{ textAlign: "center" }}>
             {cartItems.map((item) => (
               <ListGroup.Item key={item.id}>
-                
                 <Row>
-                  <Col
-                    md={1}
-                  >
-                    
+                  <Col md={1}>
                     <Image
                       src={item.image}
                       alt={item.name}
-                      className={window.innerWidth > 720 ?"mb-2 mt-3":"mb-2 w-25"}
+                      className={
+                        window.innerWidth > 720 ? "mb-2 mt-3" : "mb-2 w-25"
+                      }
                       rounded
-                      
-                  
                     />
                   </Col>
                   <Col md={3} className="my-auto">
@@ -93,13 +86,11 @@ function Cart() {
                     </Link>
                   </Col>
                   <Col md={3} className="my-auto">
-                    
                     <h6>₹{item.price}/kg</h6>
                   </Col>
                   <Col md={4} className="my-auto">
                     <Row>
                       <Col sm="12">
-                        
                         <form
                           className={classes.root}
                           noValidate
@@ -144,7 +135,6 @@ function Cart() {
           </ListGroup>
         </Col>
         <Col md={4}>
-          
           <ListGroup className="mt-5">
             <ListGroup.Item style={{ color: "black" }}>
               <h2>Subtotal ({cartItems.length}) items</h2>₹{total}
@@ -177,7 +167,6 @@ function Cart() {
   ) : (
     <Container className="pt-5" style={{ textAlign: "left" }}>
       <h4>
-        
         Your cart is empty &nbsp;
         <Link to="/">Go back</Link>
       </h4>

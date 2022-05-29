@@ -10,12 +10,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   AvatarColor: {
-    color: theme.palette.getContrastText(
-        "#56cc9d"
-    ),
+    color: theme.palette.getContrastText("#56cc9d"),
     backgroundColor: "#56cc9d",
   },
-  
 }));
 
 export default function LetterAvatars(props) {
@@ -23,8 +20,9 @@ export default function LetterAvatars(props) {
 
   return (
     <div className={classes.root}>
-    
-      <Avatar className={classes.AvatarColor}>{props.avatarname.substring(0,1)}</Avatar>
+      <Avatar className={classes.AvatarColor}>
+        {props.avatarname.substring(0, 1)}
+      </Avatar>
     </div>
   );
 }

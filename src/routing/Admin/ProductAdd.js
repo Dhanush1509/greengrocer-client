@@ -19,28 +19,27 @@ const ProductEditScreen = (props) => {
   const AdminContext = useContext(adminContext);
   const AlertContext = useContext(alertContext);
   const { getProduct, product, getProductReset, loading } = ProductContext;
-  const {userData}= useContext(authContext)
+  const { userData } = useContext(authContext);
   const {
     updateProductByAdmin,
     orderListLoading,
     success,
     adminMessage,
     clearAdminMessage,
-    createProductByAdmin
+    createProductByAdmin,
   } = AdminContext;
   const { setAlert } = AlertContext;
   useEffect(() => {
-  if (userData) {
-    if (userData.isAdmin === false) {
+    if (userData) {
+      if (userData.isAdmin === false) {
+        props.history.push("/");
+      }
+    }
+    if (userData.length === 0) {
       props.history.push("/");
     }
-  }
-  if (userData.length === 0) {
-    props.history.push("/");
-  }
-  
+
     if (adminMessage) {
-    
       setAlert("Product added Successfully", "white", "#56cc9d");
       clearAdminMessage();
     }
@@ -49,16 +48,22 @@ const ProductEditScreen = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    createProductByAdmin(
-      { name, price, image, category, countInStock, description,keywords }
-    );
-      setName("");
-      setPrice("");
-      setImage("");
-      setCategory("");
-      setCountInStock("");
-      setDescription("");
-      setKeywords("");
+    createProductByAdmin({
+      name,
+      price,
+      image,
+      category,
+      countInStock,
+      description,
+      keywords,
+    });
+    setName("");
+    setPrice("");
+    setImage("");
+    setCategory("");
+    setCountInStock("");
+    setDescription("");
+    setKeywords("");
   };
 
   return (

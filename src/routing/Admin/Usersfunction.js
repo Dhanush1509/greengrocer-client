@@ -39,7 +39,7 @@ const Usersfunction = (props) => {
     deleteUserByAdmin,
     clearAdminMessage,
   } = useContext(AdminContext);
-  const { setAlert} = useContext(alertContext);
+  const { setAlert } = useContext(alertContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -192,7 +192,6 @@ const Usersfunction = (props) => {
       <>
         {getFunction ? (
           <>
-            
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -201,35 +200,36 @@ const Usersfunction = (props) => {
                     <TableCell align="right">Email</TableCell>
                     <TableCell align="right">isVerified</TableCell>
                     <TableCell align="right">isAdmin</TableCell>
-                    {orderDetailsOfUserForAdmin?orderDetailsOfUserForAdmin.map(order=>
-                      <>
-                        <TableCell align="right">order Id</TableCell>
-                        <TableCell align="right">order createdAt</TableCell>
-                        <TableCell align="right">
-                        Delivery Address
-                        </TableCell>
-                        <TableCell align="right">
-                          paymentOption
-                        </TableCell>
-                        <TableCell align="right">
-                          deliveryPrice
-                        </TableCell>
-                        <TableCell align="right">taxPrice</TableCell>
-                        <TableCell align="right">itemsPrice</TableCell>
-                        <TableCell align="right">totalPrice</TableCell>
-                        <TableCell align="right">isPaid</TableCell>
-                        {order.orderedItemsData.map((c) => (
-                          <>
-                            <TableCell align="right">orderItemsData id</TableCell>
-                            <TableCell align="right">product id</TableCell>
-                            <TableCell align="right">product quantity</TableCell>
-                         
-                          </>
-                        ))}
-                        <TableCell align="right">isDelivered</TableCell>
-                        <TableCell align="right">order UpdatedAt</TableCell>
+                    {orderDetailsOfUserForAdmin ? (
+                      orderDetailsOfUserForAdmin.map((order) => (
+                        <>
+                          <TableCell align="right">order Id</TableCell>
+                          <TableCell align="right">order createdAt</TableCell>
+                          <TableCell align="right">Delivery Address</TableCell>
+                          <TableCell align="right">paymentOption</TableCell>
+                          <TableCell align="right">deliveryPrice</TableCell>
+                          <TableCell align="right">taxPrice</TableCell>
+                          <TableCell align="right">itemsPrice</TableCell>
+                          <TableCell align="right">totalPrice</TableCell>
+                          <TableCell align="right">isPaid</TableCell>
+                          {order.orderedItemsData.map((c) => (
+                            <>
+                              <TableCell align="right">
+                                orderItemsData id
+                              </TableCell>
+                              <TableCell align="right">product id</TableCell>
+                              <TableCell align="right">
+                                product quantity
+                              </TableCell>
+                            </>
+                          ))}
+                          <TableCell align="right">isDelivered</TableCell>
+                          <TableCell align="right">order UpdatedAt</TableCell>
                         </>
-                      ):<></>}
+                      ))
+                    ) : (
+                      <></>
+                    )}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -246,38 +246,49 @@ const Usersfunction = (props) => {
                     <TableCell align="right">
                       {userDetailsForAdmin.isAdmin ? "true" : "false"}
                     </TableCell>
-                    {orderDetailsOfUserForAdmin?orderDetailsOfUserForAdmin.map((order) => (
-                      <>
-                        <TableCell align="right">{order._id}</TableCell>
-                        <TableCell align="right">{order.createdAt}</TableCell>
-                        <TableCell align="right">
-                          {order.deliveryAddress.address},
-                          {order.deliveryAddress.city},
-                          {order.deliveryAddress.country},
-                          {order.deliveryAddress.postalCode}
-                        </TableCell>
-                        <TableCell align="right">
-                          {order.paymentOption}
-                        </TableCell>
-                        <TableCell align="right">
-                          {order.deliveryPrice}
-                        </TableCell>
-                        <TableCell align="right">{order.taxPrice}</TableCell>
-                        <TableCell align="right">{order.itemsPrice}</TableCell>
-                        <TableCell align="right">{order.totalPrice}</TableCell>
-                        <TableCell align="right">{order.isPaid?"true":"false"}</TableCell>
-                        {order.orderedItemsData.map((c) => (
-                          <>
-                            <TableCell align="right">{c._id}</TableCell>
-                            <TableCell align="right">{c.id}</TableCell>
-                            <TableCell align="right">{c.quantity}</TableCell>
-                          
-                          </>
-                        ))}
-                        <TableCell align="right">{order.isDelivered?"true":"false"}</TableCell>
-                        <TableCell align="right">{order.updatedAt}</TableCell>
-                      </>
-                    )):<></>}
+                    {orderDetailsOfUserForAdmin ? (
+                      orderDetailsOfUserForAdmin.map((order) => (
+                        <>
+                          <TableCell align="right">{order._id}</TableCell>
+                          <TableCell align="right">{order.createdAt}</TableCell>
+                          <TableCell align="right">
+                            {order.deliveryAddress.address},
+                            {order.deliveryAddress.city},
+                            {order.deliveryAddress.country},
+                            {order.deliveryAddress.postalCode}
+                          </TableCell>
+                          <TableCell align="right">
+                            {order.paymentOption}
+                          </TableCell>
+                          <TableCell align="right">
+                            {order.deliveryPrice}
+                          </TableCell>
+                          <TableCell align="right">{order.taxPrice}</TableCell>
+                          <TableCell align="right">
+                            {order.itemsPrice}
+                          </TableCell>
+                          <TableCell align="right">
+                            {order.totalPrice}
+                          </TableCell>
+                          <TableCell align="right">
+                            {order.isPaid ? "true" : "false"}
+                          </TableCell>
+                          {order.orderedItemsData.map((c) => (
+                            <>
+                              <TableCell align="right">{c._id}</TableCell>
+                              <TableCell align="right">{c.id}</TableCell>
+                              <TableCell align="right">{c.quantity}</TableCell>
+                            </>
+                          ))}
+                          <TableCell align="right">
+                            {order.isDelivered ? "true" : "false"}
+                          </TableCell>
+                          <TableCell align="right">{order.updatedAt}</TableCell>
+                        </>
+                      ))
+                    ) : (
+                      <></>
+                    )}
                   </TableRow>
                 </TableBody>
               </Table>

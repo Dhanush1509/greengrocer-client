@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Card, Col } from "react-bootstrap";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import ShareIcon from "@material-ui/icons/Share";
@@ -29,6 +29,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import dotenv from "dotenv";
+import productContext from "../context/product/productContext";
 dotenv.config();
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CardItem(props) {
   const [open, setOpen] = useState(false);
+  const { addWishList } = useContext(productContext);
   const theme = useTheme();
 
   const handleClickOpen = () => {
@@ -61,12 +63,12 @@ function CardItem(props) {
 
   const image = props.image;
 
-  function handleClick() {
+  function handleClick(id) {
     setFavourite((prev) => !prev);
+    addWishList(id);
   }
   const shareUrl = `${process.env.REACT_APP_CLIENT_URL}products/${props._id}/`;
   const classes = useStyles();
-
   return (
     <Col
       id="cards"
@@ -124,7 +126,7 @@ function CardItem(props) {
               aria-label="add"
             >
               <IconButton
-                onClick={handleClick}
+                onClick={() => handleClick(props._id)}
                 style={{ color: favourite ? "red" : "black" }}
               >
                 <FavoriteIcon />

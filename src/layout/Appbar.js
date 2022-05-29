@@ -4,7 +4,7 @@ import logo from "../assets/brand.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import { NavLink,Route } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import cartContext from "../context/cart/cartContext";
 import AuthContext from "../context/auth/AuthContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -12,37 +12,48 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { LinkContainer } from "react-router-bootstrap";
-import Search from "./Search"
+import Search from "./Search";
 function Appbar() {
   const CartContext = useContext(cartContext);
 
-  const { logout, userData, loading, isAuthenticated, getUser } = useContext(
-    AuthContext
-  );
+  const { logout, userData, loading, isAuthenticated, getUser,notifications } =
+    useContext(AuthContext);
   const { cartItems } = CartContext;
 
-   useEffect(() => {
+  useEffect(() => {
     getUser();
-  //  eslint-disable-next-line
-   }, [location]);
+    //  eslint-disable-next-line
+  }, [location]);
   const handleLogout = () => {
     logout();
   };
   return (
     <>
-      <Navbar bg="success" variant="dark" expand="lg" collapseOnSelect className="py-2" style={{boxShadow:"1px 1px 10px #a6a6a6",minHeight:"70px",position:"relative",zIndex:4}}>
+      <Navbar
+        bg="success"
+        variant="dark"
+        expand="lg"
+        collapseOnSelect
+        className="py-2"
+        style={{
+          boxShadow: "1px 1px 10px #a6a6a6",
+          minHeight: "70px",
+          position: "relative",
+          zIndex: 4,
+        }}
+      >
         <>
           <LinkContainer to="/">
             <Navbar.Brand>
-              
               <img alt="" src={logo} width="32" height="32" /> Greengrocer
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-          <Route render={({ history }) => <Search history={history} />} />
+            <Nav className="ml-auto">
+              <Route render={({ history }) => <Search history={history} />} />
               {userData.name ? (
                 <NavDropdown
                   title={
@@ -55,14 +66,12 @@ function Appbar() {
                 >
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>
-                      
                       <AccountCircleIcon style={{ color: "black" }} /> My
                       profile
                     </NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to="/wishlist">
                     <NavDropdown.Item>
-                      
                       <FavoriteIcon style={{ color: "black" }} /> Wishlist
                     </NavDropdown.Item>
                   </LinkContainer>
@@ -72,10 +81,10 @@ function Appbar() {
                       Orders
                     </NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to="/notifications">
+                  <LinkContainer to="/chat">
                     <NavDropdown.Item>
                       <NotificationsIcon style={{ color: "black" }} />
-                      Notifications
+                      Chat
                     </NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={handleLogout}>
@@ -106,10 +115,16 @@ function Appbar() {
                 <></>
               )}
 
+              <LinkContainer to="/chat" className="mr-lg-3">
+                <Nav.Link>
+                  <Badge badgeContent={notifications?.length} color="error">
+                   <NotificationsNoneIcon/>
+                  </Badge>
+                </Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/cart" className="mr-lg-3">
                 <Nav.Link>
                   <Badge badgeContent={cartItems.length} color="error">
-                    
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </Nav.Link>

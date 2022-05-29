@@ -19,7 +19,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../../layout/Spinner";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {  makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import dotenv from "dotenv";
 dotenv.config();
@@ -36,7 +36,9 @@ const Products = (props) => {
   const {
     orderListLoading,
     getAllProductsForAdmin,
-    productsForAdmin,deleteProductByAdmin,success
+    productsForAdmin,
+    deleteProductByAdmin,
+    success,
   } = useContext(AdminContext);
   const { userData } = useContext(authContext);
   useEffect(() => {
@@ -53,9 +55,9 @@ const Products = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-const handleDelete=(id)=>{
-deleteProductByAdmin(id)
-}
+  const handleDelete = (id) => {
+    deleteProductByAdmin(id);
+  };
   const classes = useStyles();
   useEffect(() => {
     if (userData) {
@@ -105,7 +107,6 @@ deleteProductByAdmin(id)
                 .map((order) => (
                   <TableRow hover role="checkbox" tabIndex={-1} key={order._id}>
                     <TableCell>
-                      
                       <Link to={`/products/${order._id}`}>{order._id}</Link>
                     </TableCell>
                     <TableCell>{order.name}</TableCell>
@@ -115,7 +116,13 @@ deleteProductByAdmin(id)
                       <EditIcon
                         style={{ color: "blue", cursor: "pointer" }}
                         onClick={() =>
-                          props.history.push(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}admin/product/${order._id}/edit`)
+                          props.history.push(
+                            `${
+                              process.env.NODE_ENV == "production"
+                                ? process.env.REACT_APP_URL
+                                : process.env.REACT_APP_DEV_URL
+                            }admin/product/${order._id}/edit`
+                          )
                         }
                       />
                     </TableCell>

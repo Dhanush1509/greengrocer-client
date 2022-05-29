@@ -26,11 +26,16 @@ import {
   DELETE_PRODUCT_BY_ADMIN,
   UPDATE_PRODUCT_BY_ADMIN_ERROR,
   UPDATE_PRODUCT_BY_ADMIN,
-  ADD_PRODUCT_BY_ADMIN,ADD_PRODUCT_BY_ADMIN_ERROR,
+  ADD_PRODUCT_BY_ADMIN,
+  ADD_PRODUCT_BY_ADMIN_ERROR,
 } from "../types";
 import dotenv from "dotenv";
-dotenv.config()
-console.log(process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL)
+dotenv.config();
+console.log(
+  process.env.NODE_ENV == "production"
+    ? process.env.REACT_APP_URL
+    : process.env.REACT_APP_DEV_URL
+);
 const AdminState = (props) => {
   const { userData } = useContext(AuthContext);
   const initialState = {
@@ -49,19 +54,26 @@ const AdminState = (props) => {
     adminOrder: null,
     orderListLoading: false,
     productsForAdmin: [],
-    success:false
+    success: false,
   };
   const [state, dispatch] = useReducer(AdminReducer, initialState);
 
   const getAllProductsForAdmin = async () => {
     try {
       dispatch({ type: ORDER_LIST_LOADING });
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/admin`
+      );
       dispatch({ type: GET_ALL_PRODUCTS_FOR_ADMIN, payload: data });
     } catch (err) {
       dispatch({
         type: GET_ALL_PRODUCTS_FOR_ADMIN_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -74,13 +86,20 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/`
+      );
       dispatch({ type: GET_ALL_USERS, payload: data.users });
       dispatch({ type: GET_USERS_COUNT, payload: data.users });
     } catch (err) {
       dispatch({
         type: GET_ALL_USERS_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -92,12 +111,22 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/${userId}`
+      );
       dispatch({ type: GET_USER_BY_ID, payload: data });
     } catch (err) {
-      dispatch({ type: GET_USER_BY_ID, payload:  err.response && err.response.data.message
+      dispatch({
+        type: GET_USER_BY_ID,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
+            : err.message,
+      });
     }
   };
   const deleteUserByAdmin = async (userId) => {
@@ -105,14 +134,23 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.delete(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`);
+      const { data } = await axios.delete(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/${userId}`
+      );
       dispatch({ type: DELETE_USER_BY_ADMIN, payload: data });
       document.location.href("/admin");
     } catch (err) {
-      dispatch({ type: DELETE_USER_BY_ADMIN_ERROR, payload:  err.response && err.response.data.message
+      dispatch({
+        type: DELETE_USER_BY_ADMIN_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
-            : err.message });
-      
+            : err.message,
+      });
     }
   };
   const updateUserByAdmin = async (userId, formData) => {
@@ -127,12 +165,21 @@ const AdminState = (props) => {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}users/${userId}`, formData, config);
+      const { data } = await axios.put(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }users/${userId}`,
+        formData,
+        config
+      );
       dispatch({ type: UPDATE_USER_BY_ADMIN, payload: data });
     } catch (err) {
       dispatch({
         type: UPDATE_USER_BY_ADMIN_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -147,12 +194,19 @@ const AdminState = (props) => {
       setAuth(userData.token);
     }
     try {
-      const { data } = await axios.get(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders`);
+      const { data } = await axios.get(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders`
+      );
       dispatch({ type: GET_ALL_ORDERS_FOR_ADMIN, payload: data.orders });
     } catch (err) {
       dispatch({
         type: GET_ALL_ORDERS_FOR_ADMIN_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
@@ -169,7 +223,15 @@ const AdminState = (props) => {
       },
     };
     try {
-      const { data } = await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}orders/${Id}`, {}, config);
+      const { data } = await axios.put(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }orders/${Id}`,
+        {},
+        config
+      );
 
       dispatch({
         type: UPDATE_ORDER_TO_DELIVERED,
@@ -178,66 +240,89 @@ const AdminState = (props) => {
     } catch (err) {
       dispatch({
         type: UPDATE_ORDER_TO_DELIVERED_ERROR,
-        payload:  err.response && err.response.data.message
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
       });
     }
   };
-  const deleteProductByAdmin= async (id)=>{
-if (userData.token) {
-  setAuth(userData.token);
-}
-dispatch({type:ORDER_LIST_LOADING})
-try {
-  const { data } = await axios.delete(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/${id}`);
-  dispatch({ type: DELETE_PRODUCT_BY_ADMIN, payload: data });
-} catch (err) {
-  dispatch({
-    type: DELETE_PRODUCT_BY_ADMIN_ERROR,
-    payload:  err.response && err.response.data.message
+  const deleteProductByAdmin = async (id) => {
+    if (userData.token) {
+      setAuth(userData.token);
+    }
+    dispatch({ type: ORDER_LIST_LOADING });
+    try {
+      const { data } = await axios.delete(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/admin/${id}`
+      );
+      dispatch({ type: DELETE_PRODUCT_BY_ADMIN, payload: data });
+    } catch (err) {
+      dispatch({
+        type: DELETE_PRODUCT_BY_ADMIN_ERROR,
+        payload:
+          err.response && err.response.data.message
             ? err.response.data.message
             : err.message,
-  });
-}
-  }
-const createProductByAdmin = async (formData) => {
-  if (userData.token) {
-    setAuth(userData.token);
-  }
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+      });
+    }
   };
-  try {
-    dispatch({ type: ORDER_LIST_LOADING });
-    const { data } = await axios.post(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/addproduct`, formData, config);
+  const createProductByAdmin = async (formData) => {
+    if (userData.token) {
+      setAuth(userData.token);
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      dispatch({ type: ORDER_LIST_LOADING });
+      const { data } = await axios.post(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/admin/addproduct`,
+        formData,
+        config
+      );
 
-    dispatch({ type: ADD_PRODUCT_BY_ADMIN, payload: data });
-  } catch (err) {
-    dispatch({ type: ADD_PRODUCT_BY_ADMIN_ERROR });
-  }
-};
-const updateProductByAdmin = async(formData,id) => {
-if (userData.token) {
-  setAuth(userData.token);
-}
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-  try{
-    dispatch({type:ORDER_LIST_LOADING})
-const {data}=await axios.put(`${process.env.NODE_ENV=="production"?process.env.REACT_APP_URL:process.env.REACT_APP_DEV_URL}products/admin/${id}`,formData, config)
-console.log(data)
-dispatch({type:UPDATE_PRODUCT_BY_ADMIN, payload: data})
-  }
-catch(err){
-  dispatch({type:UPDATE_PRODUCT_BY_ADMIN_ERROR})
-}
-}
+      dispatch({ type: ADD_PRODUCT_BY_ADMIN, payload: data });
+    } catch (err) {
+      dispatch({ type: ADD_PRODUCT_BY_ADMIN_ERROR });
+    }
+  };
+  const updateProductByAdmin = async (formData, id) => {
+    if (userData.token) {
+      setAuth(userData.token);
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      dispatch({ type: ORDER_LIST_LOADING });
+      const { data } = await axios.put(
+        `${
+          process.env.NODE_ENV == "production"
+            ? process.env.REACT_APP_URL
+            : process.env.REACT_APP_DEV_URL
+        }products/admin/${id}`,
+        formData,
+        config
+      );
+      console.log(data);
+      dispatch({ type: UPDATE_PRODUCT_BY_ADMIN, payload: data });
+    } catch (err) {
+      dispatch({ type: UPDATE_PRODUCT_BY_ADMIN_ERROR });
+    }
+  };
   return (
     <AdminContext.Provider
       value={{
@@ -265,9 +350,9 @@ catch(err){
         getAllProductsForAdmin,
         productsForAdmin: state.productsForAdmin,
         deleteProductByAdmin,
-        success:state.success,
+        success: state.success,
         updateProductByAdmin,
-  createProductByAdmin
+        createProductByAdmin,
       }}
     >
       {props.children}

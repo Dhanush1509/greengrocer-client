@@ -1,5 +1,5 @@
-import React from 'react'
-import {Container} from 'react-bootstrap'
+import React from "react";
+import { Container } from "react-bootstrap";
 import Lottie from "react-lottie";
 import animationData from "../assets/reactLottie/404.json";
 const defaultOptions = {
@@ -11,14 +11,14 @@ const defaultOptions = {
   },
 };
 function NoMatch() {
-    return (
-      <>
-        <Lottie
-          options={defaultOptions}
-          style={{ width: "56%", height: "auto" }}
-        />
-      </>
-    );
+  return (
+    <>
+      <Lottie
+        options={defaultOptions}
+        style={{ width: "56%", height: "auto" }}
+      />
+    </>
+  );
 }
 
-export default NoMatch
+export default NoMatch;

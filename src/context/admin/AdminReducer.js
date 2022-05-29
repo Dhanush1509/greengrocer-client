@@ -21,7 +21,8 @@ import {
   DELETE_PRODUCT_BY_ADMIN_ERROR,
   UPDATE_PRODUCT_BY_ADMIN,
   UPDATE_PRODUCT_BY_ADMIN_ERROR,
-  ADD_PRODUCT_BY_ADMIN,ADD_PRODUCT_BY_ADMIN_ERROR
+  ADD_PRODUCT_BY_ADMIN,
+  ADD_PRODUCT_BY_ADMIN_ERROR,
 } from "../types";
 //Why when I pass whole data as action.payload it is not accepting
 const AdminReducer = (state, action) => {
@@ -53,7 +54,7 @@ const AdminReducer = (state, action) => {
     case UPDATE_ORDER_TO_DELIVERED_ERROR:
     case DELETE_PRODUCT_BY_ADMIN_ERROR:
     case UPDATE_PRODUCT_BY_ADMIN_ERROR:
-      case ADD_PRODUCT_BY_ADMIN_ERROR:
+    case ADD_PRODUCT_BY_ADMIN_ERROR:
       return {
         ...state,
         error: action.payload,
@@ -126,14 +127,14 @@ const AdminReducer = (state, action) => {
       return {
         ...state,
         orderListLoading: false,
-        adminMessage:action.payload.message,
+        adminMessage: action.payload.message,
       };
-      case ADD_PRODUCT_BY_ADMIN:
-        return{
-          ...state,
-          adminMessage:action.payload.message,
-          orderListLoading:false
-        }
+    case ADD_PRODUCT_BY_ADMIN:
+      return {
+        ...state,
+        adminMessage: action.payload.message,
+        orderListLoading: false,
+      };
     default:
       return state;
   }
