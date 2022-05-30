@@ -221,6 +221,13 @@ const ChatWindow = ({ history }) => {
       <h2 style={{ textAlign: "left" }} className="my-3">
         CHAT
       </h2>
+      {selectedChat &&
+      <p style={{ margin: "10px 0" }}>
+        Chatting with
+       {" "} {selectedChat.groupAdmin._id == userData._id
+          ? selectedChat.chatName
+          : "Admin"}
+      </p>}
       <Row>
         <Col md={3}>
           <ListGroup style={{ textAlign: "center" }}>
@@ -241,10 +248,6 @@ const ChatWindow = ({ history }) => {
         >
           {selectedChat ? (
             <>
-              <p style={{ margin: "10px 0" }}>
-                {" "}
-                Chatting with {selectedChat && selectedChat.groupAdmin._id==userData._id? selectedChat.chatName:"Admin"}
-              </p>
               {messages && messages.length > 0 ? (
                 <ScrollableFeed>
                   {messages &&
