@@ -22,11 +22,11 @@ import {
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import io from "socket.io-client";
 import dotenv from "dotenv";
-dotenv.config()
+dotenv.config();
 const ENDPOINT =
   process.env.NODE_ENV === "production"
     ? process.env.REACT_APP_URL
-    : process.env.REACT_APP_DEV_URL; 
+    : process.env.REACT_APP_DEV_URL;
 var socket, selectedChatCompare;
 const chat = [{ name: "hiwsgteshrfdghdfrhg" }],
   chatLoading = false;
@@ -157,7 +157,7 @@ const ChatWindow = ({ history }) => {
       socket.on("connected", () => setSocketConnected(true));
       socket.on("typing", () => setIsTyping(true));
       socket.on("stop typing", () => setIsTyping(false));
-    }
+   }
 
     // eslint-disable-next-line
   }, []);
@@ -241,6 +241,10 @@ const ChatWindow = ({ history }) => {
         >
           {selectedChat ? (
             <>
+              <p style={{ margin: "10px 0" }}>
+                {" "}
+                Chatting with {selectedChat && selectedChat.groupAdmin._id==userData._id? selectedChat.chatName:"Admin"}
+              </p>
               {messages && messages.length > 0 ? (
                 <ScrollableFeed>
                   {messages &&
@@ -288,7 +292,18 @@ const ChatWindow = ({ history }) => {
                             maxWidth: "75%",
                           }}
                         >
-                          {m.content}
+                          {m.content
+                            .split("#")
+                            .map((c, index) =>
+                              index == 1 ||
+                              index == m.content.split("#").length - 2 ? (
+                                <Link
+                                  to={c}
+                                >{`${process.env.REACT_APP_CLIENT_URL}${c}`}</Link>
+                              ) : (
+                                <>{c}</>
+                              )
+                            )}
                         </span>
                       </div>
                     ))}
@@ -330,7 +345,6 @@ const ChatWindow = ({ history }) => {
               </h1>
             </div>
           )}
-       
         </Col>
       </Row>
     </div>

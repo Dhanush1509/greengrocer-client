@@ -7,7 +7,9 @@ import alertContext from "../context/alert/AlertContext";
 import Paginate from "../layout/Paginate";
 import Helmet from "../components/Title";
 import HomeCarousel from "../components/HomeCarousel.jsx";
-
+import io from "socket.io-client";
+import dotenv from "dotenv";  
+dotenv.config()
 const ProductsList = () => {
   const ProductContext = useContext(productContext);
   const { products, wishlist} = ProductContext;
@@ -51,7 +53,7 @@ const SpinnerLocal = () => {
 
 const Home = ({ history, match }) => {
   console.log("first");
-  const { getUser } = useContext(authContext);
+  const { getUser,userData,setNotification,notifications } = useContext(authContext);
   // const [renderApp, setRenderApp] = useState(false);
   const ProductContext = useContext(productContext);
   const { getProducts, error, clearProductErrors, loading } = ProductContext;
@@ -72,10 +74,6 @@ const Home = ({ history, match }) => {
     }
     //eslint-disable-next-line
   }, [error]);
-  // useEffect(() => {
-  //   getUser();
-  //   //eslint-disable-next-line
-  // }, []);
 
   return (
     <>

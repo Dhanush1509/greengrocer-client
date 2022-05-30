@@ -15,11 +15,19 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { LinkContainer } from "react-router-bootstrap";
 import Search from "./Search";
+import io from "socket.io-client";
 function Appbar() {
   const CartContext = useContext(cartContext);
 
-  const { logout, userData, loading, isAuthenticated, getUser,notifications } =
-    useContext(AuthContext);
+  const {
+    logout,
+    userData,
+    loading,
+    isAuthenticated,
+    getUser,
+    notifications,
+    setNotification,
+  } = useContext(AuthContext);
   const { cartItems } = CartContext;
 
   useEffect(() => {
@@ -29,6 +37,21 @@ function Appbar() {
   const handleLogout = () => {
     logout();
   };
+  const socket = io(
+    process.env.NODE_ENV === "production"
+      ? process.env.REACT_APP_URL
+      : process.env.REACT_APP_DEV_URL
+  );
+  useEffect(() => {
+    if (userData && userData._id) {
+      console.log("fi")
+      socket.emit("setup", userData);
+      socket.on("notification", (notification) =>
+        setNotification([...notifications, notification])
+      );
+    }
+  }, []);
+
   return (
     <>
       <Navbar
@@ -118,7 +141,7 @@ function Appbar() {
               <LinkContainer to="/chat" className="mr-lg-3">
                 <Nav.Link>
                   <Badge badgeContent={notifications?.length} color="error">
-                   <NotificationsNoneIcon/>
+                    <NotificationsNoneIcon />
                   </Badge>
                 </Nav.Link>
               </LinkContainer>

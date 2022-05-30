@@ -9,6 +9,7 @@ import cartContext from "../context/cart/cartContext";
 import orderContext from "../context/order/orderContext";
 import authContext from "../context/auth/AuthContext";
 import Checkout from "../components/CheckoutSection";
+import io from "socket.io-client";
 const defaultOptions = {
   loop: false,
   autoplay: true,
@@ -65,6 +66,12 @@ const PlaceOrder = (props) => {
       tax_Price: taxPrice,
       total_Price: totalPrice,
     });
+        if (userData && userData._id)
+          io(
+            process.env.NODE_ENV === "production"
+              ? process.env.REACT_APP_URL
+              : process.env.REACT_APP_DEV_URL
+          ).emit("notification", userData._id, "Hey");
     emptyCart();
   };
 
