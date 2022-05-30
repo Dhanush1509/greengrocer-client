@@ -21,7 +21,12 @@ import {
 } from "./ChatLogics";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import io from "socket.io-client";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+import dotenv from "dotenv";
+dotenv.config()
+const ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_URL
+    : process.env.REACT_APP_DEV_URL; 
 var socket, selectedChatCompare;
 const chat = [{ name: "hiwsgteshrfdghdfrhg" }],
   chatLoading = false;
