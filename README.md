@@ -1,7 +1,8 @@
 
 <p align='center'>
-<img src='./src/assets/brand.svg'  width='25%'> Greengrocer
+<img src='./src/assets/brand.svg'  width='25%'> 
 </p>
+# Greengrocer
 <p align='center'>
 <b>An E-commerce  web-app</b>
 </p>
@@ -17,7 +18,7 @@ This is the frontend of Greengrocer deployed with
 </p>
 
 <p align='center'>
-<img src='./assets/greengrocer.png'>
+<img src='./src/assets/greengrocer.png'>
 </p>
 
 ## 🚀 Link to [Backend](https://github.com/Dhanush1509/greengrocer-api)
