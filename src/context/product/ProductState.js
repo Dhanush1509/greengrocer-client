@@ -32,7 +32,7 @@ const ProductState = (props) => {
   const getProducts = async (keyword = "", number = "") => {
     try {
       dispatch({ type: LOADING_PRODUCTS });
-      if (!state.wishlist || !state.wishlist.length > 0) await getWishList();
+      if ((!state.wishlist || !state.wishlist.length > 0)) await getWishList();
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
