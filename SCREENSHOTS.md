@@ -37,7 +37,7 @@
 ## Cart Page
 
 <p align='center'>
-<img src='./src/assets/screenshots/cart.png'>
+<img src='./src/assets/screenshots/cartPage.png'>
 </p>
 
 ## Payment Page
