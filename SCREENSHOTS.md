@@ -19,7 +19,7 @@
 ## Profile Page
 
 <p align='center'>
-<img src='./src/assets/screenshots/profile.png'>
+<img src='./src/assets/screenshots/Profile.png'>
 </p>
 
 ## Wishlist page
