@@ -62,7 +62,7 @@ The admin panel has the following features:
 
 ## ⚙ Tools and Technologies used
 
-#### [Client](https://github.com/varunKT001/tomper-wear-ecommerce)
+#### Client
 
 1. [React.js](https://reactjs.org/)
 2.  [Razorpay](https://razorpay.com/)
