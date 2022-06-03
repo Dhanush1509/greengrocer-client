@@ -46,7 +46,7 @@ const Order = (props) => {
   const { userData } = useContext(authContext);
   const { emptyCart } = useContext(cartContext);
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin");
     } else if (!order) {
       getOrder(props.match.params.id);
@@ -90,7 +90,7 @@ const Order = (props) => {
       return;
     }
 
-    setAuth(userData.token);
+    setAuth(userData?.token);
     const result = await axios.post(
       `${
         process.env.NODE_ENV == "production"

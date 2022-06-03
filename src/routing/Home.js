@@ -62,6 +62,8 @@ const Home = ({ history, match }) => {
   const keyword = match.params.keyword || "";
   const currentPageNumber = match.params.pagenumber || "";
   useEffect(() => {
+    console.log(userData)
+    if(!userData||!userData.length>0)
     getProducts(keyword, currentPageNumber);
     window.scrollTo(0, 0);
     //eslint-disable-next-line

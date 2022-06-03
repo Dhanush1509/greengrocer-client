@@ -23,7 +23,6 @@ const defaultOptions = {
 function UserProfile(props) {
   const {
     getUser,
-    userDetails,
     userData,
     updateUser,
     error,
@@ -42,8 +41,8 @@ function UserProfile(props) {
     password2: "",
   });
   let email1;
-  if (userDetails) {
-    email1 = userDetails.email;
+  if (userData) {
+    email1 = userData.email;
   }
   const { name, email, password, password2 } = user;
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -57,22 +56,22 @@ function UserProfile(props) {
     //eslint-disable-next-line
   }, [error]);
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin");
     } else {
       if (!user) {
         getUser();
       } else {
         setUser({
-          name: userDetails.name,
-          email: userDetails.email,
+          name: userData.name,
+          email: userData.email,
           password: "",
           password2: "",
         });
       }
     }
     //eslint-disable-next-line
-  }, [userDetails]);
+  }, [userData]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -87,7 +86,7 @@ function UserProfile(props) {
       });
     }
   };
-  return userDetails ? (
+  return userData ? (
     <>
       <Row style={{ color: "black" }}>
         <Col lg={3} sm={12}>
@@ -96,7 +95,7 @@ function UserProfile(props) {
               options={defaultOptions}
               style={{ width: "50%", height: "auto" }}
             />
-            Hello {userDetails.name}
+            Hello {userData.name}
           </Col>
 
           <Row className="mt-3" style={{ textAlign: "left" }}>

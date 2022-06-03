@@ -36,9 +36,7 @@ function OrderState(props) {
   const { userData } = useContext(AuthContext);
   const [state, dispatch] = useReducer(OrderReducer, initialState);
   const addOrder = async (orderData) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+         setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -70,9 +68,7 @@ function OrderState(props) {
     }
   };
   const getOrder = async (orderId) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+         setAuth(userData?.token)
 
     try {
       const { data } = await axios.get(
@@ -98,9 +94,7 @@ function OrderState(props) {
   };
 
   const getOptions = async (totalPrice) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+         setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -132,9 +126,7 @@ function OrderState(props) {
     }
   };
   const updateOrderToSuccess = async (formData) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+         setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -165,9 +157,7 @@ function OrderState(props) {
     }
   };
   const getMyOrders = async () => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+         setAuth(userData?.token)
 
     try {
       const { data } = await axios.get(

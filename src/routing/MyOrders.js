@@ -18,7 +18,7 @@ const MyOrders = (props) => {
 
   const { userData } = useContext(authContext);
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin?redirect=myorders");
     } else {
       getMyOrders();

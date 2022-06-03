@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useContext } from "react";
 import CartContext from "./cartContext";
 import cartReducer from "./cartReducer";
 import axios from "axios";
@@ -12,6 +12,8 @@ import {
   EMPTY_CART,
 } from "../types.js";
 import dotenv from "dotenv";
+import setAuthToken from "../../utils/setAuthToken";
+import authContext from "../auth/AuthContext";
 dotenv.config();
 function CartState(props) {
   const itemsInStorage = localStorage.getItem("cartItems")
@@ -29,10 +31,11 @@ function CartState(props) {
     paymentOption: paymentInStorage,
     total: 0,
   };
-
+  const { userData } = useContext(authContext);
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = async (id, addBool, quantity) => {
+    setAuthToken(userData?.token);
     const { data } = await axios.get(
       `${
         process.env.NODE_ENV == "production"

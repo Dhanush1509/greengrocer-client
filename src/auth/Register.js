@@ -46,7 +46,7 @@ const Register = (props) => {
     ? props.location.search.split("=")[1]
     : "/";
   //  useEffect(() => {
-  //    if (userData.length !== 0) {
+  //    if (userData) {
   //      props.history.push(redirect);
   //    }
 

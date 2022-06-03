@@ -33,7 +33,7 @@ const AddressPage = (props) => {
     setDelivery({ ...delivery, [e.target.name]: e.target.value });
 
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin?redirect=address");
     }
     if (deliveryAddress) {

@@ -61,6 +61,7 @@ const AdminState = (props) => {
   const getAllProductsForAdmin = async () => {
     try {
       dispatch({ type: ORDER_LIST_LOADING });
+         setAuth(userData?.token);
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
@@ -82,9 +83,7 @@ const AdminState = (props) => {
 
   const getAllUsers = async () => {
     dispatch({ type: ORDER_LIST_LOADING });
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     try {
       const { data } = await axios.get(
         `${
@@ -107,9 +106,7 @@ const AdminState = (props) => {
   };
   const getUserById = async (userId) => {
     dispatch({ type: ORDER_LIST_LOADING });
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     try {
       const { data } = await axios.get(
         `${
@@ -130,9 +127,7 @@ const AdminState = (props) => {
     }
   };
   const deleteUserByAdmin = async (userId) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     try {
       const { data } = await axios.delete(
         `${
@@ -156,9 +151,7 @@ const AdminState = (props) => {
   const updateUserByAdmin = async (userId, formData) => {
     const { name, email, isAdmin, isVerified } = formData;
 
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -190,9 +183,7 @@ const AdminState = (props) => {
   };
   const getAllOrdersForAdmin = async () => {
     dispatch({ type: ORDER_LIST_LOADING });
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     try {
       const { data } = await axios.get(
         `${
@@ -214,9 +205,7 @@ const AdminState = (props) => {
   };
   const updateOrderToDelivered = async (Id) => {
     dispatch({ type: ORDER_LIST_LOADING });
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -248,9 +237,7 @@ const AdminState = (props) => {
     }
   };
   const deleteProductByAdmin = async (id) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     dispatch({ type: ORDER_LIST_LOADING });
     try {
       const { data } = await axios.delete(
@@ -272,9 +259,7 @@ const AdminState = (props) => {
     }
   };
   const createProductByAdmin = async (formData) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -298,9 +283,7 @@ const AdminState = (props) => {
     }
   };
   const updateProductByAdmin = async (formData, id) => {
-    if (userData.token) {
-      setAuth(userData.token);
-    }
+   setAuth(userData?.token)
     const config = {
       headers: {
         "Content-Type": "application/json",

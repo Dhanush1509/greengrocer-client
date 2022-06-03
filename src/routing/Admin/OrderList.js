@@ -61,7 +61,7 @@ const Order = (props) => {
         props.history.push("/");
       }
     }
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/");
     }
     //eslint-disable-next-line

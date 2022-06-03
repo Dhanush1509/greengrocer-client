@@ -32,7 +32,7 @@ const PlaceOrder = (props) => {
     useContext(orderContext);
   const { userData } = useContext(authContext);
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin");
     }
     if (deliveryAddress.length === 0) {

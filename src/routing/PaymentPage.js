@@ -20,7 +20,7 @@ const PaymentPage = (props) => {
   const { userData } = useContext(authContext);
   const [paymentOption, setPaymentOption] = useState("Razorpay");
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin?redirect=payment");
     }
     if (!deliveryAddress) {

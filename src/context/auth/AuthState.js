@@ -19,13 +19,13 @@ import {
   CLEAR_MESSAGE,
   CONFIRM_EMAIL,
   CONFIRM_EMAIL_ERROR,
-  SET_NOTIFICATION
+  SET_NOTIFICATION,
 } from "../types.js";
 import dotenv from "dotenv";
 dotenv.config();
 const userInfoStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : [];
+  : null;
 function AuthState(props) {
   const initialState = {
     loading: true,
@@ -34,14 +34,15 @@ function AuthState(props) {
     message: null,
     userData: userInfoStorage,
     userDetails: {},
-    notifications:[]
+    notifications: [],
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
-const setNotification=(p)=>{
-  dispatch({ type:SET_NOTIFICATION, payload: p})
-}
+  const setNotification = (p) => {
+    dispatch({ type: SET_NOTIFICATION, payload: p });
+  };
   const loginUser = async (formData) => {
     console.log(formData);
+      setAuth(state.userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -70,6 +71,7 @@ const setNotification=(p)=>{
   };
   const confirmation = async (email, token) => {
     try {
+            setAuth(state.userData?.token);
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
@@ -89,6 +91,7 @@ const setNotification=(p)=>{
     }
   };
   const resendLink = async (email) => {
+          setAuth(state.userData?.token);
     console.log(email);
     const config = {
       headers: {
@@ -118,7 +121,7 @@ const setNotification=(p)=>{
     }
   };
   const registerUser = async (formData) => {
-    console.log(formData);
+    console.log(formData);      setAuth(state.userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -147,9 +150,9 @@ const setNotification=(p)=>{
     }
   };
   const getUser = async () => {
-    if (state.userData.token) {
-      setAuth(state.userData.token);
-    }
+
+      setAuth(state.userData?.token);
+    
     try {
       const { data } = await axios.get(
         `${
@@ -176,9 +179,9 @@ const setNotification=(p)=>{
     }
   };
   const updateUser = async (formData) => {
-    if (state.userData.token) {
-      setAuth(state.userData.token);
-    }
+
+      setAuth(state.userData?.token);
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -247,7 +250,7 @@ const setNotification=(p)=>{
         userData: state.userData,
         loading: state.loading,
         setNotification,
-        notifications: state.notifications
+        notifications: state.notifications,
       }}
     >
       {props.children}

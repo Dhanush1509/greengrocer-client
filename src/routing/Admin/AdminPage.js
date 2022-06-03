@@ -14,7 +14,7 @@ const AdminPage = (props) => {
     pendingDeliveredItemsCount,
   } = useContext(AdminContext);
   useEffect(() => {
-    if (userData.length !== 0) {
+    if (userData) {
       if (userData.isAdmin === true) {
         getAllUsers();
         getAllOrdersForAdmin();

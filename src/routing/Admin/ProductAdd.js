@@ -35,7 +35,7 @@ const ProductEditScreen = (props) => {
         props.history.push("/");
       }
     }
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/");
     }
 

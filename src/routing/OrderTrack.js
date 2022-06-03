@@ -29,7 +29,7 @@ const changeDate = (date, add) => {
 const OrderTrack = (props) => {
   const { userData } = useContext(authContext);
   useEffect(() => {
-    if (userData.length === 0) {
+    if (!userData) {
       props.history.push("/signin");
     } else {
       getOrder(props.match.params.id);

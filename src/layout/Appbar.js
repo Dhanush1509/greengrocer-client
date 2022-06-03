@@ -30,10 +30,10 @@ function Appbar() {
   } = useContext(AuthContext);
   const { cartItems } = CartContext;
 
-  useEffect(() => {
-    getUser();
-    //  eslint-disable-next-line
-  }, [location]);
+  // useEffect(() => {
+  //   getUser();
+  //   //  eslint-disable-next-line
+  // }, [location]);
   const handleLogout = () => {
     logout();
   };
@@ -44,7 +44,7 @@ function Appbar() {
   );
   useEffect(() => {
     if (userData && userData._id) {
-      console.log("fi")
+      console.log("fi");
       socket.emit("setup", userData);
       socket.on("notification", (notification) =>
         setNotification([...notifications, notification])
@@ -77,65 +77,72 @@ function Appbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Route render={({ history }) => <Search history={history} />} />
-              {userData.name ? (
-                <NavDropdown
-                  title={
-                    userData.name.length > 15
-                      ? userData.name.split(" ")[0]
-                      : userData.name
-                  }
-                  id="username"
-                  className="mr-lg-3"
-                >
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>
-                      <AccountCircleIcon style={{ color: "black" }} /> My
-                      profile
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/wishlist">
-                    <NavDropdown.Item>
-                      <FavoriteIcon style={{ color: "black" }} /> Wishlist
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/myorders">
-                    <NavDropdown.Item>
-                      <CheckBoxOutlineBlankIcon style={{ color: "black" }} />
-                      Orders
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/chat">
-                    <NavDropdown.Item>
-                      <NotificationsIcon style={{ color: "black" }} />
-                      Chat
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={handleLogout}>
-                    <ExitToAppIcon style={{ color: "black" }} /> Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+              {userData ? (
+                userData.name ? (
+                  <>
+                    {" "}
+                    <NavDropdown
+                      title={
+                        userData.name.length > 15
+                          ? userData.name.split(" ")[0]
+                          : userData.name
+                      }
+                      id="username"
+                      className="mr-lg-3"
+                    >
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>
+                          <AccountCircleIcon style={{ color: "black" }} /> My
+                          profile
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/wishlist">
+                        <NavDropdown.Item>
+                          <FavoriteIcon style={{ color: "black" }} /> Wishlist
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/myorders">
+                        <NavDropdown.Item>
+                          <CheckBoxOutlineBlankIcon
+                            style={{ color: "black" }}
+                          />
+                          Orders
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/chat">
+                        <NavDropdown.Item>
+                          <NotificationsIcon style={{ color: "black" }} />
+                          Chat
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={handleLogout}>
+                        <ExitToAppIcon style={{ color: "black" }} /> Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                    {userData.isAdmin && (
+                      <NavDropdown title="Admin" id="admin" className="mr-lg-3">
+                        <LinkContainer to="/admin">
+                          <NavDropdown.Item>Admin</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/admin/userslist">
+                          <NavDropdown.Item>Users</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/admin/productslist">
+                          <NavDropdown.Item>Products</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/admin/orderslist">
+                          <NavDropdown.Item>Orders</NavDropdown.Item>
+                        </LinkContainer>
+                      </NavDropdown>
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )
               ) : (
                 <LinkContainer to="/signin" className="mr-lg-3">
                   <Nav.Link>SignIn</Nav.Link>
                 </LinkContainer>
-              )}
-              {userData.isAdmin ? (
-                <NavDropdown title="Admin" id="admin" className="mr-lg-3">
-                  <LinkContainer to="/admin">
-                    <NavDropdown.Item>Admin</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/userslist">
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/productslist">
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/orderslist">
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              ) : (
-                <></>
               )}
 
               <LinkContainer to="/chat" className="mr-lg-3">

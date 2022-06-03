@@ -86,12 +86,17 @@ function CardItem(props) {
           boxShadow: "1px 1px 10px 1px rgba(0,0,0,0.5)",
         }}
       >
-        <Card.Img
-          variant="top"
-          src={image}
-          style={{ height: window.innerWidth > 720 ? "250px" : "250px" }}
-        />
-
+        
+        <Link
+          style={{ textDecorationColor: "black" }}
+          to={`/products/${props._id}/`}
+        >
+          <Card.Img
+            variant="top"
+            src={image}
+            style={{ height: window.innerWidth > 720 ? "250px" : "250px" }}
+          />
+        </Link>
         <Card.Body>
           <Link
             style={{ textDecorationColor: "black" }}

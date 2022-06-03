@@ -4,9 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import productContext from "../context/product/productContext";
 const Paginate = (props) => {
   const { totalPages, page } = useContext(productContext);
-  return (
-    <>
-      <Pagination className="mt-4 mx-auto">
+  return totalPages>1?    <Pagination className="mt-4 mx-auto">
         {[...Array(totalPages).keys()].map((x) => (
           <LinkContainer
             key={x + 1}
@@ -19,9 +17,8 @@ const Paginate = (props) => {
             <Pagination.Item active={x + 1 === page}>{x + 1}</Pagination.Item>
           </LinkContainer>
         ))}
-      </Pagination>
-    </>
-  );
+      </Pagination>:<></>
+  
 };
 
 export default Paginate;
