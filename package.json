@@ -32,6 +32,13 @@
     "reactjs-alert": "^1.2.7",
     "socket.io-client": "^4.5.1",
     "styled-components": "^5.2.1",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@iconscout/react-unicons": "^1.1.6",
+    "apexcharts": "^3.35.0",
+    "framer-motion": "^6.2.9",
+    "react-apexcharts": "^1.4.0",
+    "react-circular-progressbar": "^2.0.4",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

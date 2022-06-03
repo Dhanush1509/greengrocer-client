@@ -26,7 +26,7 @@ import Order from "./routing/Order";
 import Confirm from "./auth/Confirm";
 import Confirmation from "./auth/Confirmation";
 import Resend from "./auth/Resend";
-import AdminPage from "./routing/Admin/AdminPage";
+import Admin from "./routing/Admin/Admin/Admin";
 import UsersList from "./routing/Admin/UsersList";
 import AdminUsersFunction from "./routing/Admin/Usersfunction";
 import Wishlist from "./routing/Wishlist";
@@ -122,7 +122,7 @@ function App() {
                             path="/placeorder"
                             component={PlaceOrder}
                           />
-                          <Route exact path="/admin" component={AdminPage} />
+                          <Route exact path="/admin" component={Admin} />
                           <Route
                             exact
                             path="/admin/userslist"
