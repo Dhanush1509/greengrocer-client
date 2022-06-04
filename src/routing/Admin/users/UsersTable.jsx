@@ -7,8 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "./Table.css";
-import authContext from "../../context/auth/AuthContext";
-import AdminContext from "../../context/admin/AdminContext";
+import authContext from "../../../context/auth/AuthContext";
+import AdminContext from "../../../context/admin/AdminContext";
 import TablePagination from "@material-ui/core/TablePagination";
 
 const UsersTable = ({ setId }) => {

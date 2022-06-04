@@ -9,8 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import "./Table.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import setAuthToken from "../../utils/setAuthToken";
-import authContext from "../../context/auth/AuthContext";
+import setAuthToken from "../../../utils/setAuthToken";
+import authContext from "../../../context/auth/AuthContext";
 import moment from "moment";
 
 const makeStyle = (status) => {

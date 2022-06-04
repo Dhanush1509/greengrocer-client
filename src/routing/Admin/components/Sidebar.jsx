@@ -1,12 +1,12 @@
 import React, { useState,useContext } from "react";
 import "./Sidebar.css";
-import Logo from "../../assets/brand.svg";
+import Logo from "../../../assets/brand.svg";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarData } from "../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion/dist/framer-motion";
 import { useHistory } from "react-router-dom";
-import AdminContext from "../../context/admin/AdminContext";
+import AdminContext from "../../../context/admin/AdminContext";
 const Sidebar = ({ setPage }) => {
   const {activePage}=useContext(AdminContext)
   const history = useHistory();

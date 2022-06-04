@@ -26,15 +26,9 @@ import Order from "./routing/Order";
 import Confirm from "./auth/Confirm";
 import Confirmation from "./auth/Confirmation";
 import Resend from "./auth/Resend";
-import Admin from "./Admin/Admin";
-import UsersList from "./routing/Admin/UsersList";
-import AdminUsersFunction from "./routing/Admin/Usersfunction";
+import Admin from "./routing/Admin/Admin";
 import Wishlist from "./routing/Wishlist";
-import OrdersList from "./routing/Admin/OrderList";
-import ProductsList from "./routing/Admin/ProductsList";
 import Footer from "./layout/Footer";
-import EditProduct from "./routing/Admin/ProductEdit";
-import AddProduct from "./routing/Admin/ProductAdd";
 import ChatWindow from "./routing/ChatWindow";
 function App() {
   return (
@@ -123,36 +117,7 @@ function App() {
                             component={PlaceOrder}
                           />
                           <Route exact path="/admin" component={Admin} />
-                          <Route
-                            exact
-                            path="/admin/userslist"
-                            component={UsersList}
-                          />
-                          <Route
-                            exact
-                            path="/admin/orderslist"
-                            component={OrdersList}
-                          />
-                          <Route
-                            exact
-                            path="/admin/productslist"
-                            component={ProductsList}
-                          />
-                          <Route
-                            exact
-                            path="/admin/user/:id"
-                            component={AdminUsersFunction}
-                          />
-                          <Route
-                            exact
-                            path="/admin/product/:id/edit"
-                            component={EditProduct}
-                          />
-                          <Route
-                            exact
-                            path="/admin/product/create"
-                            component={AddProduct}
-                          />
+                       
                           <Route path="*" component={NoMatch} />
                         </Switch>
                       </div>

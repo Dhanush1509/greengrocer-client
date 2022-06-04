@@ -3,7 +3,7 @@ import { useState,useEffect,useContext } from "react";
 import MainDash from "./MainDash/MainDash";
 import RightSide from "./components/RigtSide/RightSide";
 import Sidebar from "./components/Sidebar";
-import AdminContext from "../context/admin/AdminContext";
+import AdminContext from "../../context/admin/AdminContext";
 
 function Admin() {
 const {setActivePage,activePage} = useContext(AdminContext)
