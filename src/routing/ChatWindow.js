@@ -157,7 +157,7 @@ const ChatWindow = ({ history }) => {
       socket.on("connected", () => setSocketConnected(true));
       socket.on("typing", () => setIsTyping(true));
       socket.on("stop typing", () => setIsTyping(false));
-   }
+    }
 
     // eslint-disable-next-line
   }, []);
@@ -221,13 +221,14 @@ const ChatWindow = ({ history }) => {
       <h2 style={{ textAlign: "left" }} className="my-3">
         CHAT
       </h2>
-      {selectedChat &&
-      <p style={{ margin: "10px 0" }}>
-        Chatting with
-       {" "} {selectedChat.groupAdmin._id == userData._id
-          ? selectedChat.chatName
-          : "Admin"}
-      </p>}
+      {selectedChat && (
+        <p style={{ margin: "10px 0" }}>
+          Chatting with{" "}
+          {selectedChat.groupAdmin._id == userData._id
+            ? selectedChat.chatName
+            : "Admin"}
+        </p>
+      )}
       <Row>
         <Col md={3}>
           <ListGroup style={{ textAlign: "center" }}>

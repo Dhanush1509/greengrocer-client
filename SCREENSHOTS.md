@@ -64,8 +64,6 @@
 <img src='./src/assets/screenshots/paidOrderPage.png'>
 </p>
 
-
-
 # Admin
 
 ## Admin Page

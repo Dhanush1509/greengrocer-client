@@ -34,9 +34,7 @@ const Login = (props) => {
     ? props.location.search.split("=")[1]
     : "/";
   useEffect(() => {
-   if (userData) 
-      props.history.push(redirect);
-
+    if (userData) props.history.push(redirect);
 
     //eslint-disable-next-line
   }, [userData]);

@@ -25,7 +25,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const userInfoStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : "";
+  : null;
 function AuthState(props) {
   const initialState = {
     loading: true,
@@ -42,7 +42,7 @@ function AuthState(props) {
   };
   const loginUser = async (formData) => {
     console.log(formData);
-      setAuth(state.userData?.token);
+    setAuth(state.userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function AuthState(props) {
   };
   const confirmation = async (email, token) => {
     try {
-            setAuth(state.userData?.token);
+      setAuth(state.userData?.token);
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
@@ -91,7 +91,7 @@ function AuthState(props) {
     }
   };
   const resendLink = async (email) => {
-          setAuth(state.userData?.token);
+    setAuth(state.userData?.token);
     console.log(email);
     const config = {
       headers: {
@@ -121,7 +121,8 @@ function AuthState(props) {
     }
   };
   const registerUser = async (formData) => {
-    console.log(formData);      setAuth(state.userData?.token);
+    console.log(formData);
+    setAuth(state.userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -150,9 +151,8 @@ function AuthState(props) {
     }
   };
   const getUser = async () => {
+    setAuth(state.userData?.token);
 
-      setAuth(state.userData?.token);
-    
     try {
       const { data } = await axios.get(
         `${
@@ -179,8 +179,7 @@ function AuthState(props) {
     }
   };
   const updateUser = async (formData) => {
-
-      setAuth(state.userData?.token);
+    setAuth(state.userData?.token);
 
     const config = {
       headers: {
@@ -210,17 +209,12 @@ function AuthState(props) {
     }
   };
   const logout = () => {
-    localStorage.setItem("userInfo","");
     dispatch({ type: LOGOUT_USER });
     // document.location.href = "/signin";
   };
   useEffect(
     () => {
-      console.log(typeof state.userData)
-       if (typeof state.userData == "string")
-         localStorage.setItem("userInfo", "");
-       else localStorage.setItem("userInfo", JSON.stringify(state.userData));
-
+      localStorage.setItem("userInfo", JSON.stringify(state.userData));
     },
     //eslint-disable-next-line
     [state.userData]

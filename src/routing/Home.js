@@ -8,11 +8,11 @@ import Paginate from "../layout/Paginate";
 import Helmet from "../components/Title";
 import HomeCarousel from "../components/HomeCarousel.jsx";
 import io from "socket.io-client";
-import dotenv from "dotenv";  
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 const ProductsList = () => {
   const ProductContext = useContext(productContext);
-  const { products, wishlist} = ProductContext;
+  const { products, wishlist } = ProductContext;
 
   return (
     <Row className="justify-content-md-left mt-5">
@@ -52,8 +52,8 @@ const SpinnerLocal = () => {
 };
 
 const Home = ({ history, match }) => {
-
-  const { getUser,userData,setNotification,notifications } = useContext(authContext);
+  const { getUser, userData, setNotification, notifications } =
+    useContext(authContext);
   // const [renderApp, setRenderApp] = useState(false);
   const ProductContext = useContext(productContext);
   const { getProducts, error, clearProductErrors, loading } = ProductContext;
@@ -62,7 +62,6 @@ const Home = ({ history, match }) => {
   const keyword = match.params.keyword || "";
   const currentPageNumber = match.params.pagenumber || "";
   useEffect(() => {
-    
     getProducts(keyword, currentPageNumber);
     window.scrollTo(0, 0);
     //eslint-disable-next-line
@@ -87,7 +86,7 @@ const Home = ({ history, match }) => {
           <HomeCarousel />
         </>
       )}
-      <div style={{ paddingTop: keyword ? 0 : "25vw",minHeight:"150vh" }}>
+      <div style={{ paddingTop: keyword ? 0 : "25vw", minHeight: "150vh" }}>
         {loading ? (
           <SpinnerLocal />
         ) : (

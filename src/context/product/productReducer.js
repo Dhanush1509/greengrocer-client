@@ -36,7 +36,7 @@ const productReducer = (state, action) => {
       return {
         ...state,
         wishlist: action.payload.wishList,
-        wishLoading:false
+        wishLoading: false,
       };
     case GET_PRODUCT:
       return {
@@ -45,8 +45,8 @@ const productReducer = (state, action) => {
         loading: false,
         // state.products.filter(product=>product._id===action.payload.id)
       };
-      case WISHLIST_LOADING:
-        return {...state,wishLoading:true}
+    case WISHLIST_LOADING:
+      return { ...state, wishLoading: true };
     case CLEAR_PRODUCT_ERRORS:
       return {
         ...state,

@@ -1,4 +1,4 @@
-import React, { useReducer,useContext } from "react";
+import React, { useReducer, useContext } from "react";
 import axios from "axios";
 import ProductContext from "./productContext";
 import productReducer from "./productReducer";
@@ -21,7 +21,7 @@ import setAuth from "../../utils/setAuthToken";
 
 dotenv.config();
 const ProductState = (props) => {
-        const { userData } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext);
   const initialState = {
     products: [],
     error: null,
@@ -30,15 +30,14 @@ const ProductState = (props) => {
     totalPages: null,
     loading: false,
     wishlist: [],
-    wishLoading:true
+    wishLoading: true,
   };
   const [state, dispatch] = useReducer(productReducer, initialState);
   const getProducts = async (keyword = "", number = "") => {
-
-    console.log("called")
+    console.log("called");
     try {
       dispatch({ type: LOADING_PRODUCTS });
-      setAuth(userData?.token)
+      setAuth(userData?.token);
       if (!state.wishlist || !state.wishlist.length > 0) await getWishList();
       const { data } = await axios.get(
         `${
@@ -59,9 +58,8 @@ const ProductState = (props) => {
     }
   };
   const getProduct = async (id) => {
- 
     try {
-           setAuth(userData?.token);
+      setAuth(userData?.token);
       dispatch({ type: LOADING_PRODUCTS });
       const { data } = await axios.get(
         `${
@@ -83,10 +81,9 @@ const ProductState = (props) => {
     }
   };
   const addWishList = async (id) => {
-
     console.log(id);
     try {
-           setAuth(userData?.token);
+      setAuth(userData?.token);
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
@@ -108,7 +105,8 @@ const ProductState = (props) => {
     }
   };
   const getWishList = async () => {
-    try {     setAuth(userData?.token);
+    try {
+      setAuth(userData?.token);
       dispatch({ type: WISHLIST_LOADING });
       const { data } = await axios.get(
         `${
@@ -155,7 +153,7 @@ const ProductState = (props) => {
         addWishList,
         getWishList,
         wishlist: state.wishlist,
-        wishLoading:state.wishLoading
+        wishLoading: state.wishLoading,
       }}
     >
       {props.children}

@@ -21,14 +21,8 @@ const defaultOptions = {
 };
 
 function UserProfile(props) {
-  const {
-    getUser,
-    userData,
-    updateUser,
-    error,
-    clearErrors,
-    logout,
-  } = useContext(AuthContext);
+  const { getUser, userData, updateUser, error, clearErrors, logout } =
+    useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
   // useEffect(() => {
   //   getUser();

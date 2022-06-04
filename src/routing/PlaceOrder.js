@@ -66,12 +66,12 @@ const PlaceOrder = (props) => {
       tax_Price: taxPrice,
       total_Price: totalPrice,
     });
-        if (userData && userData._id)
-          io(
-            process.env.NODE_ENV === "production"
-              ? process.env.REACT_APP_URL
-              : process.env.REACT_APP_DEV_URL
-          ).emit("notification", userData._id, "Hey");
+    if (userData && userData._id)
+      io(
+        process.env.NODE_ENV === "production"
+          ? process.env.REACT_APP_URL
+          : process.env.REACT_APP_DEV_URL
+      ).emit("notification", userData._id, "Hey");
     emptyCart();
   };
 

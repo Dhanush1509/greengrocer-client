@@ -4,7 +4,7 @@ import logo from "../assets/brand.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Route, useHistory } from "react-router-dom";
 import cartContext from "../context/cart/cartContext";
 import AuthContext from "../context/auth/AuthContext";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -17,8 +17,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import Search from "./Search";
 import io from "socket.io-client";
 
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Appbar() {
   const CartContext = useContext(cartContext);
 
@@ -40,6 +40,7 @@ function Appbar() {
   const handleLogout = () => {
     logout();
   };
+  const history = useHistory();
   const socket = io(
     process.env.NODE_ENV === "production"
       ? process.env.REACT_APP_URL
@@ -54,6 +55,9 @@ function Appbar() {
       );
     }
   }, []);
+  useEffect(() => {
+    if (!userData) history.push("/");
+  }, [userData]);
 
   return (
     <>
@@ -172,12 +176,12 @@ function Appbar() {
 
 export default Appbar;
 
-          //  <LinkContainer to="/admin/userslist">
-          //                 <NavDropdown.Item>Users</NavDropdown.Item>
-          //               </LinkContainer>
-          //               <LinkContainer to="/admin/productslist">
-          //                 <NavDropdown.Item>Products</NavDropdown.Item>
-          //               </LinkContainer>
-          //               <LinkContainer to="/admin/orderslist">
-          //                 <NavDropdown.Item>Orders</NavDropdown.Item>
-          //               </LinkContainer>
+//  <LinkContainer to="/admin/userslist">
+//                 <NavDropdown.Item>Users</NavDropdown.Item>
+//               </LinkContainer>
+//               <LinkContainer to="/admin/productslist">
+//                 <NavDropdown.Item>Products</NavDropdown.Item>
+//               </LinkContainer>
+//               <LinkContainer to="/admin/orderslist">
+//                 <NavDropdown.Item>Orders</NavDropdown.Item>
+//               </LinkContainer>

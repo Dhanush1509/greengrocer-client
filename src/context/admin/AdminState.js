@@ -28,6 +28,7 @@ import {
   UPDATE_PRODUCT_BY_ADMIN,
   ADD_PRODUCT_BY_ADMIN,
   ADD_PRODUCT_BY_ADMIN_ERROR,
+  SET_ACTIVE_PAGE,
 } from "../types";
 import dotenv from "dotenv";
 dotenv.config();
@@ -55,13 +56,14 @@ const AdminState = (props) => {
     orderListLoading: false,
     productsForAdmin: [],
     success: false,
+    activePage: "Dashboard",
   };
   const [state, dispatch] = useReducer(AdminReducer, initialState);
 
   const getAllProductsForAdmin = async () => {
     try {
       dispatch({ type: ORDER_LIST_LOADING });
-         setAuth(userData?.token);
+      setAuth(userData?.token);
       const { data } = await axios.get(
         `${
           process.env.NODE_ENV == "production"
@@ -83,7 +85,7 @@ const AdminState = (props) => {
 
   const getAllUsers = async () => {
     dispatch({ type: ORDER_LIST_LOADING });
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     try {
       const { data } = await axios.get(
         `${
@@ -106,7 +108,7 @@ const AdminState = (props) => {
   };
   const getUserById = async (userId) => {
     dispatch({ type: ORDER_LIST_LOADING });
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     try {
       const { data } = await axios.get(
         `${
@@ -127,7 +129,7 @@ const AdminState = (props) => {
     }
   };
   const deleteUserByAdmin = async (userId) => {
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     try {
       const { data } = await axios.delete(
         `${
@@ -151,7 +153,7 @@ const AdminState = (props) => {
   const updateUserByAdmin = async (userId, formData) => {
     const { name, email, isAdmin, isVerified } = formData;
 
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -183,7 +185,7 @@ const AdminState = (props) => {
   };
   const getAllOrdersForAdmin = async () => {
     dispatch({ type: ORDER_LIST_LOADING });
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     try {
       const { data } = await axios.get(
         `${
@@ -205,7 +207,7 @@ const AdminState = (props) => {
   };
   const updateOrderToDelivered = async (Id) => {
     dispatch({ type: ORDER_LIST_LOADING });
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -221,7 +223,6 @@ const AdminState = (props) => {
         {},
         config
       );
-
       dispatch({
         type: UPDATE_ORDER_TO_DELIVERED,
         payload: data,
@@ -237,7 +238,7 @@ const AdminState = (props) => {
     }
   };
   const deleteProductByAdmin = async (id) => {
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     dispatch({ type: ORDER_LIST_LOADING });
     try {
       const { data } = await axios.delete(
@@ -259,7 +260,7 @@ const AdminState = (props) => {
     }
   };
   const createProductByAdmin = async (formData) => {
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -283,7 +284,7 @@ const AdminState = (props) => {
     }
   };
   const updateProductByAdmin = async (formData, id) => {
-   setAuth(userData?.token)
+    setAuth(userData?.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -306,6 +307,9 @@ const AdminState = (props) => {
       dispatch({ type: UPDATE_PRODUCT_BY_ADMIN_ERROR });
     }
   };
+  const setActivePage = (name) => {
+    dispatch({ type: SET_ACTIVE_PAGE, payload: name });
+  };
   return (
     <AdminContext.Provider
       value={{
@@ -323,6 +327,8 @@ const AdminState = (props) => {
         clearAdminMessage,
         getAllOrdersForAdmin,
         updateOrderToDelivered,
+        activePage: state.activePage,
+        setActivePage,
         adminOrders: state.adminOrders,
         ordersCount: state.ordersCount,
         pendingDeliveredItemsCount: state.pendingDeliveredItemsCount,

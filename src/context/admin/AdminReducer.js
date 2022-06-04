@@ -23,10 +23,13 @@ import {
   UPDATE_PRODUCT_BY_ADMIN_ERROR,
   ADD_PRODUCT_BY_ADMIN,
   ADD_PRODUCT_BY_ADMIN_ERROR,
+  SET_ACTIVE_PAGE,
 } from "../types";
 //Why when I pass whole data as action.payload it is not accepting
 const AdminReducer = (state, action) => {
   switch (action.type) {
+    case SET_ACTIVE_PAGE:
+      return {...state,activePage: action.payload}
     case GET_ALL_USERS:
       return {
         ...state,
@@ -72,9 +75,14 @@ const AdminReducer = (state, action) => {
         orderListLoading: false,
       };
     case UPDATE_ORDER_TO_DELIVERED:
+      console.log(
+        state.adminOrders.map((c) =>
+          c._id == action.payload._id ? { ...c, isDelivered: true } : c
+        )
+      );
       return {
         ...state,
-        adminOrder: action.payload,
+        adminOrders: state.adminOrders.map((c) => c._id == action.payload._id?{...c,isDelivered:true}:c),
         orderListLoading: false,
       };
     case DELETE_USER_BY_ADMIN:

@@ -1,5 +1,3 @@
-
-
 <p align='center'>
 <img src='./src/assets/brand.svg'  width='25%'> 
 </p>
@@ -22,9 +20,7 @@ This is the frontend of Greengrocer deployed with
 <img src='./src/assets/greengrocer.png'>
 </p>
 
-
 ## 🚀 Link to [Backend](https://github.com/Dhanush1509/greengrocer-api)
-
 
 ## 🧾 Description
 
@@ -51,26 +47,21 @@ Users shopping through this platform enjoys following features:
 
 The admin panel has the following features:
 
-
-
 - [x] Can view, create, update,verify and delete users.
 - [x] Can view, create, update, and delete products.
 - [x] Can view orders and update their status.
 - [x] Can chat with all users
-
-
 
 ## ⚙ Tools and Technologies used
 
 #### Client
 
 1. [React.js](https://reactjs.org/)
-2.  [Razorpay](https://razorpay.com/)
+2. [Razorpay](https://razorpay.com/)
 3. [MomentJS](https://momentjs.com/)
 4. [Socket.io-client](https://socket.io/)
 5. [Material UI](https://v4.mui.com/)
 6. [React Bootstrap](https://react-bootstrap.github.io/)
-
 
 #### [Backend](https://github.com/Dhanush1509/greengrocer-api)
 
@@ -96,7 +87,7 @@ The admin panel has the following features:
 
    ```env
         REACT_APP_URL=<remote-api-url>
-        REACT_APP_DEV_URL=<local-api-url> 
+        REACT_APP_DEV_URL=<local-api-url>
         REACT_APP_CLIENT_URL=<remote-app-url>
         REACT_APP_RAZORPAY_KEY_ID=<razorpay-key-id>
    ```
@@ -115,7 +106,7 @@ The admin panel has the following features:
    npm run build
    ```
 
-## 🤝  Test admin user credentials
+## 🤝 Test admin user credentials
 
 If you want to test Admin page drop a mail at <a href="mailto:s.munidhanush15@gmail.com" target="_blank">s.munidhanush15@gmail.com</a>
 
@@ -128,8 +119,6 @@ NOTE: These are just for testing purpose. Please don't:
 
 For testing out things, you can create a new product, try out things and after that delete the product that you created.
 
-
 #### Readme Credits: <a href="https://github.com/varunKT001">varunKT001</a>
 
-
-##  Made with 💖 by <a href="https://github.com/Dhanush1509">Singamsetty Munidhanush</a>
+## Made with 💖 by <a href="https://github.com/Dhanush1509">Singamsetty Munidhanush</a>

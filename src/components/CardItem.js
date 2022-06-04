@@ -86,7 +86,6 @@ function CardItem(props) {
           boxShadow: "1px 1px 10px 1px rgba(0,0,0,0.5)",
         }}
       >
-        
         <Link
           style={{ textDecorationColor: "black" }}
           to={`/products/${props._id}/`}

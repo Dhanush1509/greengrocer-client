@@ -14,7 +14,7 @@ import {
   CLEAR_MESSAGE,
   CONFIRM_EMAIL,
   CONFIRM_EMAIL_ERROR,
-  SET_NOTIFICATION
+  SET_NOTIFICATION,
 } from "../types.js";
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -76,7 +76,7 @@ const authReducer = (state, action) => {
     case LOGOUT_USER:
       return {
         ...state,
-        userData: [],
+        userData: null,
         isAuthenticated: false,
       };
     case REMOVE_USER_DATA:
@@ -84,8 +84,8 @@ const authReducer = (state, action) => {
         ...state,
         userData: [],
       };
-      case SET_NOTIFICATION:
-        return {...state, notifications:action.payload}
+    case SET_NOTIFICATION:
+      return { ...state, notifications: action.payload };
     default:
       return state;
   }
