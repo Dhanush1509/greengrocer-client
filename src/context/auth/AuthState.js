@@ -25,7 +25,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const userInfoStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
+  : "";
 function AuthState(props) {
   const initialState = {
     loading: true,
@@ -210,13 +210,17 @@ function AuthState(props) {
     }
   };
   const logout = () => {
-    localStorage.removeItem("userInfo");
+    localStorage.setItem("userInfo","");
     dispatch({ type: LOGOUT_USER });
-    document.location.href = "/signin";
+    // document.location.href = "/signin";
   };
   useEffect(
     () => {
-      localStorage.setItem("userInfo", JSON.stringify(state.userData));
+      console.log(typeof state.userData)
+       if (typeof state.userData == "string")
+         localStorage.setItem("userInfo", "");
+       else localStorage.setItem("userInfo", JSON.stringify(state.userData));
+
     },
     //eslint-disable-next-line
     [state.userData]

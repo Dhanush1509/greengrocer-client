@@ -14,12 +14,12 @@
 .Admin {
   /* padding: 0.5rem 3.5rem; */
   color: var(--black);
-  /* background: linear-gradient(
+  background: linear-gradient(
     106.37deg,
     #ffe1bc 29.63%,
     #ffcfd1 51.55%,
     #f3c6f1 90.85%
-  ); */
+  );
 
   height: 100vh;
   display: flex;
@@ -28,10 +28,10 @@
   font-family: 'Inter', sans-serif;
     position: absolute;
   width: 100%;
-  top: 70px;
+  top: 100px;
   left: 0;
-  z-index:5;
- 
+  /* z-index:5;
+  */
 }
 
 .AdminGlass {
@@ -42,9 +42,9 @@
   border-radius: 2rem;
   gap: 16px;
   grid-template-columns: 11rem auto 20rem;
-  overflow: hidden;
+
   box-shadow:1px 1px 5px #a6a6a6;
-   overflow-y: scroll;
+
 }
 
 @media screen and (max-width: 1200px) {

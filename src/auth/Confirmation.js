@@ -28,13 +28,13 @@ const Confirmation = (props) => {
       error ===
       "Your verification link may have expired. Please click on resend for verify your Email"
     ) {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearErrors();
     } else if (
       error ===
       "We were unable to find a user for this verification. Please SignUp!"
     ) {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearErrors();
     } else if (message === "User has been already verified. Please Login") {
       setAlert(message, "white", "#56cc9d");

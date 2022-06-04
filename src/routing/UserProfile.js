@@ -49,7 +49,7 @@ function UserProfile(props) {
   useEffect(() => {
     if (error === "User already exists") {
       if (email1 !== email) {
-        setAlert(error, "white", "red");
+        setAlert(error, "white", "#dc3545");
       }
       clearErrors();
     }
@@ -76,7 +76,7 @@ function UserProfile(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert("Passwords did not match", "white", "red");
+      setAlert("Passwords did not match", "white", "#dc3545");
       clearErrors();
     } else {
       updateUser({

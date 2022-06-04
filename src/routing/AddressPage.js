@@ -51,7 +51,7 @@ const AddressPage = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (address === "" || city === "" || postalCode === "" || country === "") {
-      setAlert("Fields cannot be empty", "white", "red");
+      setAlert("Fields cannot be empty", "white", "#dc3545");
       clearErrors();
     } else {
       saveAddress({ address, city, postalCode, country });

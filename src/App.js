@@ -26,7 +26,7 @@ import Order from "./routing/Order";
 import Confirm from "./auth/Confirm";
 import Confirmation from "./auth/Confirmation";
 import Resend from "./auth/Resend";
-import Admin from "./routing/Admin/Admin/Admin";
+import Admin from "./Admin/Admin";
 import UsersList from "./routing/Admin/UsersList";
 import AdminUsersFunction from "./routing/Admin/Usersfunction";
 import Wishlist from "./routing/Wishlist";

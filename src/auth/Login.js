@@ -18,12 +18,12 @@ const Login = (props) => {
   const { email, password } = user;
   useEffect(() => {
     if (error === "Invalid email or password") {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearErrors();
     }
 
     if (error === "Your email is not verified, Please verify") {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearErrors();
     }
 
@@ -34,9 +34,9 @@ const Login = (props) => {
     ? props.location.search.split("=")[1]
     : "/";
   useEffect(() => {
-    if (userData) {
+   if (userData) 
       props.history.push(redirect);
-    }
+
 
     //eslint-disable-next-line
   }, [userData]);
@@ -46,7 +46,7 @@ const Login = (props) => {
     e.preventDefault();
     setLoadingPage(true);
     if (email === "" || password === "") {
-      setAlert("Fields cannot be empty", "white", "red");
+      setAlert("Fields cannot be empty", "white", "#dc3545");
       clearErrors();
       setLoadingPage(false);
     } else {

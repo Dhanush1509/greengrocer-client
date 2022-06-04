@@ -52,7 +52,7 @@ const SpinnerLocal = () => {
 };
 
 const Home = ({ history, match }) => {
-  console.log("first");
+
   const { getUser,userData,setNotification,notifications } = useContext(authContext);
   // const [renderApp, setRenderApp] = useState(false);
   const ProductContext = useContext(productContext);
@@ -62,8 +62,7 @@ const Home = ({ history, match }) => {
   const keyword = match.params.keyword || "";
   const currentPageNumber = match.params.pagenumber || "";
   useEffect(() => {
-    console.log(userData)
-    if(!userData||!userData.length>0)
+    
     getProducts(keyword, currentPageNumber);
     window.scrollTo(0, 0);
     //eslint-disable-next-line
@@ -71,7 +70,7 @@ const Home = ({ history, match }) => {
   // console.log(match.params.keyword);
   useEffect(() => {
     if (error === "Products not found") {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearProductErrors();
     }
     //eslint-disable-next-line

@@ -29,7 +29,7 @@ const Register = (props) => {
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
   useEffect(() => {
     if (error === "User already exists") {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
       clearErrors();
     }
     if (message) {
@@ -56,10 +56,10 @@ const Register = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === "" || password === "" || password2 === "" || name === "") {
-      setAlert("Fields cannot be empty", "white", "red");
+      setAlert("Fields cannot be empty", "white", "#dc3545");
       clearErrors();
     } else if (password !== password2) {
-      setAlert("Passwords did not match", "white", "red");
+      setAlert("Passwords did not match", "white", "#dc3545");
       clearErrors();
     } else {
       setLocalLoading(true);

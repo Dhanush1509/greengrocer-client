@@ -30,7 +30,7 @@ function Product(props, history) {
   // }, [cartItems])
   useEffect(() => {
     if (error === "Product not found") {
-      setAlert(error, "white", "red");
+      setAlert(error, "white", "#dc3545");
     }
 
     //eslint-disable-next-line

@@ -16,6 +16,9 @@ import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { LinkContainer } from "react-router-bootstrap";
 import Search from "./Search";
 import io from "socket.io-client";
+
+  import { ToastContainer, toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
 function Appbar() {
   const CartContext = useContext(cartContext);
 
@@ -54,6 +57,17 @@ function Appbar() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Navbar
         bg="success"
         variant="dark"
@@ -120,20 +134,9 @@ function Appbar() {
                       </NavDropdown.Item>
                     </NavDropdown>
                     {userData.isAdmin && (
-                      <NavDropdown title="Admin" id="admin" className="mr-lg-3">
-                        <LinkContainer to="/admin">
-                          <NavDropdown.Item>Admin</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/admin/userslist">
-                          <NavDropdown.Item>Users</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/admin/productslist">
-                          <NavDropdown.Item>Products</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/admin/orderslist">
-                          <NavDropdown.Item>Orders</NavDropdown.Item>
-                        </LinkContainer>
-                      </NavDropdown>
+                      <LinkContainer to="/admin" className="mr-lg-3" id="admin">
+                        <Nav.Link>Admin</Nav.Link>
+                      </LinkContainer>
                     )}
                   </>
                 ) : (
@@ -168,3 +171,13 @@ function Appbar() {
 }
 
 export default Appbar;
+
+          //  <LinkContainer to="/admin/userslist">
+          //                 <NavDropdown.Item>Users</NavDropdown.Item>
+          //               </LinkContainer>
+          //               <LinkContainer to="/admin/productslist">
+          //                 <NavDropdown.Item>Products</NavDropdown.Item>
+          //               </LinkContainer>
+          //               <LinkContainer to="/admin/orderslist">
+          //                 <NavDropdown.Item>Orders</NavDropdown.Item>
+          //               </LinkContainer>

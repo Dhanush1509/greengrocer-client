@@ -11,7 +11,7 @@ const Resend = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === "") {
-      setAlert("email field cannot be empty", "white", "red");
+      setAlert("email field cannot be empty", "white", "#dc3545");
       clearErrors();
     } else {
       resendLink({ email });
@@ -35,7 +35,7 @@ const Resend = () => {
         error ===
         "We were unable to find a user with that email. Make sure your Email is correct!"
       ) {
-        setAlert(error, "white", "red");
+        setAlert(error, "white", "#dc3545");
         clearErrors();
       }
     },

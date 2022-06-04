@@ -58,7 +58,7 @@
   bottom: 2.3rem;
   width: 100%;
 }
-
+.sidebar
 .active {
   background: var(--activeItem);
   margin-left: 0;
