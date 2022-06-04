@@ -13,7 +13,9 @@
 th {
   border: none !important;
 }
-
+.Table {
+  margin-top: 20px;
+}
 .Table:first-child {
   border-radius: 0.7rem !important;
 }

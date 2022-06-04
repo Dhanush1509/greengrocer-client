@@ -109,6 +109,7 @@ function ExpandedCard({ param, setExpanded }) {
       style={{
         background: param.color.backGround,
         boxShadow: param.color.boxShadow,
+        paddingTop: "60px",
       }}
       layoutId="expandableCard"
     >

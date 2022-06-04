@@ -17,7 +17,7 @@ const UsersTable = ({ setId }) => {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
   const handleChangePage = (event, newPage) => {
     console.log(event);
     setPage(newPage);
@@ -88,7 +88,7 @@ const UsersTable = ({ setId }) => {
       </TableContainer>
       {users && users.length > 0 && (
         <TablePagination
-          rowsPerPageOptions={[5, 10]}
+          rowsPerPageOptions={[2,4,7]}
           component="div"
           count={users.length}
           rowsPerPage={rowsPerPage}

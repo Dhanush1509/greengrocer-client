@@ -44,7 +44,7 @@ const UsersTable = () => {
   const { userData } = useContext(authContext);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(7);
   const handleChangePage = (event, newPage) => {
     console.log(event);
     setPage(newPage);
@@ -147,7 +147,7 @@ const UsersTable = () => {
       </TableContainer>
       {adminOrders && adminOrders.length > 0 && (
         <TablePagination
-          rowsPerPageOptions={[5, 10, 15]}
+          rowsPerPageOptions={[2,4,7]}
           component="div"
           count={adminOrders.length}
           rowsPerPage={rowsPerPage}

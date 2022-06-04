@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     minWidth: 100,
   },
   container: {
-    height: 500,
+    height: 300,
   },
 });
 
@@ -30,7 +30,7 @@ const ProductsTable = ({setId}) => {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
 
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
   const handleChangePage = (event, newPage) => {
     console.log(event);
     setPage(newPage);
@@ -106,7 +106,7 @@ const ProductsTable = ({setId}) => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[1,3]}
             component="div"
             count={productsForAdmin.length}
             rowsPerPage={rowsPerPage}

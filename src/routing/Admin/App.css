@@ -14,24 +14,24 @@
 .Admin {
   /* padding: 0.5rem 3.5rem; */
   color: var(--black);
-  background: linear-gradient(
-    106.37deg,
-    #ffe1bc 29.63%,
-    #ffcfd1 51.55%,
-    #f3c6f1 90.85%
-  );
-
-margin-bottom:50px;
+  /* background: linear-gradient(106.37deg,
+      #ffe1bc 29.63%,
+      #ffcfd1 51.55%,
+      #f3c6f1 90.85%); */
+  /* linear-gradient(90deg, rgba(25, 24, 33, 1) 0%, rgba(86, 204, 157, 1) 0%, rgba(48, 180, 127, 1) 100%); */
+  margin-bottom: 50px;
+  background: linear-gradient(90deg, rgba(183, 181, 203, 1) 0%, rgba(232, 232, 232, 1) 0%, rgba(166, 181, 175, 1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
-    position: absolute;
+  position: absolute;
   width: 100%;
-  top: 100px;
+  top: 0;
   left: 0;
-  /* z-index:5;
-  */
+  z-index: 4;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .AdminGlass {
@@ -43,19 +43,19 @@ margin-bottom:50px;
   gap: 16px;
   grid-template-columns: 11rem auto 20rem;
 
-  box-shadow:1px 1px 5px #a6a6a6;
+  box-shadow: 1px 1px 5px #a6a6a6;
 
 }
 
 @media screen and (max-width: 1200px) {
-  .AdminGlass{
+  .AdminGlass {
     grid-template-columns: 10% 50% auto;
     overflow-y: scroll;
-  } 
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .AdminGlass{
+  .AdminGlass {
     grid-template-columns: 1fr;
-  } 
+  }
 }

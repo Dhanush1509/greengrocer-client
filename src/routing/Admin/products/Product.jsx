@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Cards from "./Cards/Cards";
+import Cards from "./Cards";
 import ProductsTable from "./ProductsTable";
 
 const User = () => {

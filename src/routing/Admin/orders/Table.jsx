@@ -58,7 +58,7 @@ export default function BasicTable() {
   }, []);
   return (
     orders &&
-    orders.length > 0 && (
+    orders.length > 0 ? (
       <div className="Table">
         <h3>Recent Orders</h3>
         <TableContainer
@@ -111,6 +111,6 @@ export default function BasicTable() {
           </Table>
         </TableContainer>
       </div>
-    )
+    ):(<div style={{height:"350px"}}></div>)
   );
 }

@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import "./Cards.css";
-import "./Card.css";
+import "../Cards.css";
+import "../Card.css";
 import "react-circular-progressbar/dist/styles.css";
 import { motion, AnimateSharedLayout } from "framer-motion/dist/framer-motion";
 import { UilTimes } from "@iconscout/react-unicons";
 import { Button, Form } from "react-bootstrap";
-import AdminContext from "../../../../context/admin/AdminContext";
-import alertContext from "../../../../context/alert/AlertContext";
+import AdminContext from "../../../context/admin/AdminContext";
+import alertContext from "../../../context/alert/AlertContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
