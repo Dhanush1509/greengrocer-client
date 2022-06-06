@@ -30,6 +30,7 @@ import Admin from "./routing/Admin/Admin";
 import Wishlist from "./routing/Wishlist";
 import Footer from "./layout/Footer";
 import ChatWindow from "./routing/ChatWindow";
+import Header from "./layout/Header";
 function App() {
   return (
     <div className="App">
@@ -41,6 +42,7 @@ function App() {
                 <AlertState>
                   <Router>
                     <Fragment>
+                    <Header/>
                       <Appbar />
                       <Alert />
                       <div
